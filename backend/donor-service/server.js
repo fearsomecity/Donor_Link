@@ -1,0 +1,33 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv').config();
+
+const app = express();
+
+// ── Middleware ──────────────────────────────────────────────────────────
+app.use(cors());
+app.use(express.json());
+
+// ── Routes ──────────────────────────────────────────────────────────────
+app.use('/api/donors', require('./routes/donor'));
+app.use('/api/donors/appointments', require('./routes/appointments'));
+
+// Health check
+app.get('/', (req, res) => {
+  res.send('🩺 Donor Service is running...');
+});
+
+// ── MongoDB connection ──────────────────────────────────────────────────
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/donornet';
+
+mongoose
+  .connect(MONGO_URI)
+  .then(() => console.log('✅ Donor Service connected to MongoDB'))
+  .catch((err) => console.warn('⚠️  MongoDB not available:', err.message));
+
+// ── Start server ────────────────────────────────────────────────────────
+const PORT = process.env.PORT || 5002;
+app.listen(PORT, () => {
+  console.log(`🩺 Donor Service running on port ${PORT}`);
+});

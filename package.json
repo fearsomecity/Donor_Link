@@ -1,0 +1,19 @@
+{
+  "name": "donor-net-fullstack",
+  "version": "1.0.0",
+  "description": "DonorNet Microservices Platform",
+  "main": "index.js",
+  "scripts": {
+    "start:auth": "cd backend/auth-service && node server.js",
+    "start:donor": "cd backend/donor-service && node server.js",
+    "start:hospital": "cd backend/hospital-service && node server.js",
+    "start:request": "cd backend/request-service && node server.js",
+    "start:gateway": "cd backend/api-gateway && node server.js",
+    "start:frontend": "cd frontend && npm run dev",
+    "start:backend": "concurrently -n \"AUTH,DONOR,HOSP,REQS,GTWY\" -c \"magenta,blue,green,yellow,cyan\" \"npm run start:auth\" \"npm run start:donor\" \"npm run start:hospital\" \"npm run start:request\" \"npm run start:gateway\"",
+    "start": "concurrently -n \"BACKEND,FRONTEND\" -c \"white,red\" \"npm run start:backend\" \"npm run start:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
