@@ -10,10 +10,10 @@
     "start:request": "cd backend/request-service && node server.js",
     "start:gateway": "cd backend/api-gateway && node server.js",
     "start:frontend": "cd frontend && npm run dev",
-    "start:backend": "concurrently -n \"AUTH,DONOR,HOSP,REQS,GTWY\" -c \"magenta,blue,green,yellow,cyan\" \"npm run start:auth\" \"npm run start:donor\" \"npm run start:hospital\" \"npm run start:request\" \"npm run start:gateway\"",
-    "start": "concurrently -n \"BACKEND,FRONTEND\" -c \"white,red\" \"npm run start:backend\" \"npm run start:frontend\""
+    "start:backend": "cd backend && npm start",
+    "start": "npx concurrently -n \"BACKEND,FRONTEND\" -c \"white,red\" \"npm run start:backend\" \"npm run start:frontend\""
   },
-  "devDependencies": {
+  "dependencies": {
     "concurrently": "^8.2.2"
   }
 }

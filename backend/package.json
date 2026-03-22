@@ -14,12 +14,18 @@
     "start:hospital:prod": "cd hospital-service && PORT=5003 node server.js",
     "start:request:prod": "cd request-service && PORT=5004 node server.js",
     "start:gateway:prod": "cd api-gateway && node server.js",
-    "start": "concurrently -n \"AUTH,DONOR,HOSP,REQS,GTWY\" -c \"magenta,blue,green,yellow,cyan\" \"npm run start:auth\" \"npm run start:donor\" \"npm run start:hospital\" \"npm run start:request\" \"npm run start:gateway\"",
-    "start:prod": "concurrently -n \"AUTH,DONOR,HOSP,REQS,GTWY\" -c \"magenta,blue,green,yellow,cyan\" \"npm run start:auth:prod\" \"npm run start:donor:prod\" \"npm run start:hospital:prod\" \"npm run start:request:prod\" \"npm run start:gateway:prod\"",
+    "start": "node --watch index.js",
+    "start:prod": "node index.js",
     "postinstall": "npm install --prefix api-gateway && npm install --prefix auth-service && npm install --prefix donor-service && npm install --prefix hospital-service && npm install --prefix request-service"
   },
   "dependencies": {
-    "concurrently": "^9.2.1"
+    "express": "^4.21.0",
+    "cors": "^2.8.5",
+    "mongoose": "^8.0.0",
+    "dotenv": "^16.4.5",
+    "@google/generative-ai": "^0.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "concurrently": "^9.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
