@@ -6,7 +6,8 @@ require('dotenv').config();
 const app = express();
 
 // ── Middleware ──────────────────────────────────────────────────────────
-app.use(cors());
+const allowedOrigins = [process.env.FRONTEND_URL, 'http://localhost:5173'].filter(Boolean);
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 
 // ── Routes ──────────────────────────────────────────────────────────────
