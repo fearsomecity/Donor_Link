@@ -9,7 +9,13 @@
     "start:hospital": "cd hospital-service && node --watch server.js",
     "start:request": "cd request-service && node --watch server.js",
     "start:gateway": "cd api-gateway && node --watch server.js",
-    "start": "concurrently -n \"AUTH,DONOR,HOSP,REQS,GTWY\" -c \"magenta,blue,green,yellow,cyan\" \"npm run start:auth\" \"npm run start:donor\" \"npm run start:hospital\" \"npm run start:request\" \"npm run start:gateway\""
+    "start:auth:prod": "cd auth-service && PORT=5001 node server.js",
+    "start:donor:prod": "cd donor-service && PORT=5002 node server.js",
+    "start:hospital:prod": "cd hospital-service && PORT=5003 node server.js",
+    "start:request:prod": "cd request-service && PORT=5004 node server.js",
+    "start:gateway:prod": "cd api-gateway && node server.js",
+    "start": "concurrently -n \"AUTH,DONOR,HOSP,REQS,GTWY\" -c \"magenta,blue,green,yellow,cyan\" \"npm run start:auth\" \"npm run start:donor\" \"npm run start:hospital\" \"npm run start:request\" \"npm run start:gateway\"",
+    "start:prod": "concurrently -n \"AUTH,DONOR,HOSP,REQS,GTWY\" -c \"magenta,blue,green,yellow,cyan\" \"npm run start:auth:prod\" \"npm run start:donor:prod\" \"npm run start:hospital:prod\" \"npm run start:request:prod\" \"npm run start:gateway:prod\""
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
