@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, Trash2, Sparkles, MessageSquare, ArrowLeft } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import { Link } from 'react-router-dom';
+import { fetchAPI } from '../utils/apiClient';
 
 export default function AIAssistant() {
   const { user } = useAuthStore();
@@ -15,7 +16,7 @@ export default function AIAssistant() {
   useEffect(() => {
     const checkUrgency = async () => {
       try {
-        const res = await fetch(`/api/requests/nearby?zipCode=${user?.profile?.zipCode || '90210'}`);
+        const res = await fetchAPI(`/api/requests/nearby?zipCode=${user?.profile?.zipCode || '90210'}`);
         const data = await res.json();
         const count = data.length;
         
@@ -66,7 +67,7 @@ export default function AIAssistant() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/ai/chat', {
+      const res = await fetchAPI('/api/ai/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: userMessage })

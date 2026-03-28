@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, MapPin, Droplet, ArrowRight, Heart } from 'lucide-react';
 import useAuthStore from '../store/authStore';
+import { fetchAPI } from '../utils/apiClient';
 
 export default function RegisterDonor() {
   const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ export default function RegisterDonor() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/auth/register/donor', {
+      const res = await fetchAPI('/api/auth/register/donor', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

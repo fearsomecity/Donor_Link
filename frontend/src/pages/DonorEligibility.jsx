@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { RefreshCw, CheckCircle, Calendar, Heart, MapPin, Droplets, ArrowRight, ShieldCheck, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
+import { fetchAPI } from '../utils/apiClient';
 
 export default function DonorEligibility() {
   const { user, token } = useAuthStore();
@@ -11,7 +12,7 @@ export default function DonorEligibility() {
   useEffect(() => {
     const fetchEligibility = async () => {
       try {
-        const res = await fetch('/api/donors/eligibility', { headers: { 'Authorization': `Bearer ${token}` } });
+        const res = await fetchAPI('/api/donors/eligibility', { headers: { 'Authorization': `Bearer ${token}` } });
         const data = await res.json();
         setEligibility(data);
       } catch (err) {
@@ -26,7 +27,7 @@ export default function DonorEligibility() {
   const handleDonate = async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/donors/profile', {
+      const res = await fetchAPI('/api/donors/profile', {
         method: 'PUT',
         headers: { 
           'Content-Type': 'application/json',

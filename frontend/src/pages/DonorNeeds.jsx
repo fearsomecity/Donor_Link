@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { MapPin, AlertCircle, RefreshCw, Droplets, ArrowRight, Heart, Calendar, Hospital } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
+import { fetchAPI } from '../utils/apiClient';
 
 export default function DonorNeeds() {
   const { user, token } = useAuthStore();
@@ -11,7 +12,7 @@ export default function DonorNeeds() {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const res = await fetch(`/api/requests/nearby?zipCode=${user?.profile?.zipCode || '90210'}`);
+        const res = await fetchAPI(`/api/requests/nearby?zipCode=${user?.profile?.zipCode || '90210'}`);
         const data = await res.json();
         setUrgentRequests(data);
       } catch (err) {

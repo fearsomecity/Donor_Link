@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { RefreshCw, AlertCircle, Plus, X, Trash2, CheckCircle, Activity, Droplets, MapPin, Calendar, Terminal } from 'lucide-react';
 import useAuthStore from '../store/authStore';
+import { fetchAPI } from '../utils/apiClient';
 
 export default function HospitalRequests() {
   const { user, token } = useAuthStore();
@@ -21,7 +22,7 @@ export default function HospitalRequests() {
   const fetchRequests = async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/requests/hospital', { headers: { 'Authorization': `Bearer ${token}` } });
+      const res = await fetchAPI('/api/requests/hospital', { headers: { 'Authorization': `Bearer ${token}` } });
       const data = await res.json();
       setMyRequests(data);
     } catch (err) {
@@ -38,7 +39,7 @@ export default function HospitalRequests() {
   const handleCreateRequest = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/requests', {
+      const res = await fetchAPI('/api/requests', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -61,7 +62,7 @@ export default function HospitalRequests() {
 
   const handleDeleteRequest = async (id) => {
     try {
-      const res = await fetch(`/api/requests/${id}`, {
+      const res = await fetchAPI(`/api/requests/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

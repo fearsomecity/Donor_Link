@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { RefreshCw, AlertCircle, Heart, Activity, MapPin, Droplets, Calendar, ArrowRight, ShieldCheck, Box } from 'lucide-react';
 import useAuthStore from '../store/authStore';
+import { fetchAPI } from '../utils/apiClient';
 
 export default function HospitalDonate() {
   const { user, token } = useAuthStore();
@@ -14,7 +15,7 @@ export default function HospitalDonate() {
   const fetchRequests = async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/requests/all', { headers: { 'Authorization': `Bearer ${token}` } });
+      const res = await fetchAPI('/api/requests/all', { headers: { 'Authorization': `Bearer ${token}` } });
       const data = await res.json();
       
       // Filter out requests made by this hospital
@@ -31,7 +32,7 @@ export default function HospitalDonate() {
     if (!window.confirm(`Are you sure you want to donate ${unitsNeeded} units of ${bloodType} to fulfill this request?`)) return;
     try {
       setLoading(true);
-      const res = await fetch(`/api/requests/${reqId}/fulfill`, {
+      const res = await fetchAPI(`/api/requests/${reqId}/fulfill`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ transferUnits: unitsNeeded, type: bloodType })

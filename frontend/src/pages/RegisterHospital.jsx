@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Building2, Mail, Lock, MapPin, Phone, ArrowRight, Activity } from 'lucide-react';
 import useAuthStore from '../store/authStore';
+import { fetchAPI } from '../utils/apiClient';
 
 export default function RegisterHospital() {
   const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ export default function RegisterHospital() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/auth/register/hospital', {
+      const res = await fetchAPI('/api/auth/register/hospital', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
