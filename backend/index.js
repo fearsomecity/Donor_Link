@@ -8,16 +8,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // ── Middleware ─────────────────────────────────────────────────────────────
-const allowedOrigins = [
-  process.env.FRONTEND_URL,
-  'https://donor-link.onrender.com', // Adding Render URL just in case
-  'http://localhost:5173'
-].filter(Boolean);
-
-app.use(cors({ 
-  origin: allowedOrigins, 
-  credentials: true 
-}));
+// CORS: Permissive for testing (will tighten later with allowedOrigins)
+app.use(cors());
 app.use(express.json());
 
 // ── Request Logger ──────────────────────────────────────────────────────────
