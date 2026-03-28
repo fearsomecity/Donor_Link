@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, LogIn, ArrowRight, Heart } from 'lucide-react';
+import axios from 'axios';
 import useAuthStore from '../store/authStore';
 
 export default function Login() {
@@ -18,32 +19,19 @@ export default function Login() {
     setLoading(true);
     console.log('🚀 Login attempt started for:', email);
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
-
     try {
-      console.log('📡 Fetching /api/auth/login...');
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-        signal: controller.signal
-      });
+      console.log('📡 Posting to /api/auth/login with baseURL:', axios.defaults.baseURL);
+      const res = await axios.post('/api/auth/login', { email, password });
       
-      clearTimeout(timeoutId);
       console.log('📥 Response received, status:', res.status);
-      
-      const data = await res.json();
-      console.log('📄 Data parsed:', data);
-      
-      if (!res.ok) throw new Error(data.error || 'Login failed');
+      console.log('📄 Data:', res.data);
       
       console.log('✅ Login successful!');
-      login(data.user, data.token);
+      login(res.data.user, res.data.token);
       navigate('/');
     } catch (err) {
-      console.error('❌ Login error:', err.name === 'AbortError' ? 'Timeout reaching server' : err.message);
-      setError(err.name === 'AbortError' ? 'Server timeout. Please check your connection.' : err.message);
+      console.error('❌ Login error:', err.response?.data?.error || err.message);
+      setError(err.response?.data?.error || 'Login failed. Please check your connection.');
     } finally {
       setLoading(false);
       console.log('🏁 Login attempt finished.');
