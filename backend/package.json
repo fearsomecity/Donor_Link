@@ -19,13 +19,14 @@
     "postinstall": "npm install --prefix api-gateway && npm install --prefix auth-service && npm install --prefix donor-service && npm install --prefix hospital-service && npm install --prefix request-service"
   },
   "dependencies": {
-    "express": "^4.21.0",
-    "cors": "^2.8.5",
-    "mongoose": "^8.0.0",
-    "dotenv": "^16.4.5",
     "@google/generative-ai": "^0.21.0",
-    "jsonwebtoken": "^9.0.2",
-    "concurrently": "^9.1.0"
+    "bcryptjs": "^3.0.3",
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.23.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"

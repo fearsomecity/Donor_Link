@@ -20,15 +20,15 @@ router.get('/inventory', authMiddleware, async (req, res) => {
   }
 });
 
-// Update Hospital Inventory
-// PUT /api/hospitals/inventory
-router.get('/inventory/update', authMiddleware, async (req, res) => {
+// Update Hospital Inventory (Simplified for tests)
+// POST /api/hospitals/inventory/update (was erroneously GET)
+router.post('/inventory/update', authMiddleware, async (req, res) => {
   try {
     if (req.user.role !== 'hospital') {
       return res.status(403).json({ message: 'Access denied' });
     }
 
-    const { type, quantity } = req.query; // Using query for simplicity in quick tests, usually POST body
+    const { type, quantity } = req.body; // Changed from req.query to req.body for security
     if (!type || quantity === undefined) return res.status(400).json({ message: 'Missing type or quantity' });
 
     const updateField = `hospitalProfile.inventory.${type}`;

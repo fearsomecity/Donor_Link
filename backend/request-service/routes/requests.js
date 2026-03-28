@@ -50,7 +50,7 @@ router.post('/', authMiddleware, async (req, res) => {
 
         await User.updateMany(
           { _id: { $in: matchedDonors.map(d => d._id) } },
-          { $push: { notifications: { $each: [notification], $position: 0 } } }
+          { $push: { 'donorProfile.notifications': { $each: [notification], $position: 0 } } }
         );
         console.log(`📢 Notified ${matchedDonors.length} matching donors.`);
       }

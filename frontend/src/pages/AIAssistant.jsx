@@ -74,8 +74,10 @@ export default function AIAssistant() {
       const data = await res.json();
       if (res.ok) {
         setMessages(prev => [...prev, { role: 'assistant', text: data.reply }]);
+      } else if (res.status === 429) {
+        setMessages(prev => [...prev, { role: 'assistant', text: "⏳ I'm a little overwhelmed right now — please wait a few seconds and try again!" }]);
       } else {
-        setMessages(prev => [...prev, { role: 'assistant', text: "I'm sorry, I'm experiencing a temporary connection issue with my knowledge base. Please try again in a moment." }]);
+        setMessages(prev => [...prev, { role: 'assistant', text: "I'm sorry, I'm experiencing a temporary issue. Please try again in a moment." }]);
       }
     } catch (err) {
       setMessages(prev => [...prev, { role: 'assistant', text: 'Network error. Please check your connection and try again.' }]);

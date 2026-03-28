@@ -20,12 +20,23 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// ── Request Logger ──────────────────────────────────────────────────────────
+app.use((req, res, next) => {
+  console.log(`🌐 [${new Date().toLocaleTimeString()}] ${req.method} ${req.originalUrl}`);
+  next();
+});
+
 // ── MongoDB connection (Shared) ───────────────────────────────────────────
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/donornet';
+console.log(`📡 Attempting MongoDB connection to: ${MONGO_URI.replace(/\/\/.*@/, '//****@')}`);
+
 mongoose.set('bufferCommands', false);
 mongoose.connect(MONGO_URI)
-  .then(() => console.log('✅ Unified Backend: Shared MongoDB connected'))
-  .catch((err) => console.warn('⚠️  Unified Backend: MongoDB connection error:', err.message));
+  .then(() => console.log('✅ Unified Backend: Shared MongoDB connected successfully'))
+  .catch((err) => {
+    console.error('❌ Unified Backend: MongoDB connection error:', err.message);
+    console.warn('⚠️  Proceeding without database — some routes may fail.');
+  });
 
 // ── Health check ──────────────────────────────────────────────────────────
 app.get('/health', (req, res) => {
@@ -43,24 +54,47 @@ app.post('/api/ai/chat', async (req, res) => {
   const { message } = req.body;
   if (!message) return res.status(400).json({ error: 'Message required' });
 
-  try {
-    const key = process.env.GEMINI_API_KEY;
-    const genAI = new GoogleGenerativeAI(key);
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-
-    const prompt = `You are the Expert AI Assistant for DonorNet, a blood donation platform.
+  const prompt = `You are the Expert AI Assistant for DonorNet, a blood donation platform.
 A user is asking: "${message}"
 
 Provide a helpful, concise, and scientifically accurate answer about blood donation, hospital features, or medical concerns. Keep your answer encouraging and under 100 words.`;
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const reply = response.text().trim();
-    res.json({ reply });
-  } catch (error) {
-    console.error('Gemini API Error:', error.message);
-    res.status(500).json({ error: 'Failed to generate AI response', details: error.message });
+  // Model preference order — update here if a model is deprecated
+  const modelCandidates = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-2.0-flash-lite', 'gemini-1.5-pro'];
+
+  const key = process.env.GEMINI_API_KEY;
+  if (!key) {
+    return res.status(500).json({ error: 'Gemini API key not configured on server.' });
   }
+
+  const genAI = new GoogleGenerativeAI(key);
+  let lastError = null;
+
+  for (const modelName of modelCandidates) {
+    try {
+      console.log(`🤖 Trying AI model: ${modelName}`);
+      const model = genAI.getGenerativeModel({ model: modelName });
+      const result = await model.generateContent(prompt);
+      const reply = result.response.text().trim();
+      console.log(`✅ AI responded using: ${modelName}`);
+      return res.json({ reply });
+    } catch (error) {
+      console.error(`❌ Model ${modelName} failed: ${error.message}`);
+      lastError = error;
+      // If it's a rate-limit (429) error, don't try other models — surface it clearly
+      if (error.message?.includes('429') || error.message?.includes('RESOURCE_EXHAUSTED')) {
+        return res.status(429).json({ 
+          error: 'AI assistant is temporarily busy. Please try again in a few seconds.',
+          details: error.message
+        });
+      }
+    }
+  }
+
+  res.status(500).json({ 
+    error: 'Failed to generate AI response. All model attempts failed.', 
+    details: lastError?.message 
+  });
 });
 
 // ── Unified Routes ─────────────────────────────────────────────────────────
@@ -68,21 +102,21 @@ Provide a helpful, concise, and scientifically accurate answer about blood donat
 // Each service's router is mounted under the prefix previously handled by the API Gateway.
 // Note: We use the existing router files directly.
 
-// Auth Service
-app.use('/api/auth', require('./auth-service/routes/auth'));
+// Auth Service — specific sub-routes first
 app.use('/api/auth/notifications', require('./auth-service/routes/notifications'));
+app.use('/api/auth', require('./auth-service/routes/auth'));
 
-// Donor Service
-app.use('/api/donors', require('./donor-service/routes/donor'));
+// Donor Service — specific sub-routes first
 app.use('/api/donors/appointments', require('./donor-service/routes/appointments'));
+app.use('/api/donors', require('./donor-service/routes/donor'));
 
-// Hospital Service
-app.use('/api/hospitals', require('./hospital-service/routes/hospital'));
+// Hospital Service — specific sub-routes first
 app.use('/api/hospitals/appointments', require('./hospital-service/routes/appointments'));
+app.use('/api/hospitals', require('./hospital-service/routes/hospital'));
 
-// Request Service
-app.use('/api/requests', require('./request-service/routes/requests'));
+// Request Service — specific sub-routes first
 app.use('/api/requests/matches', require('./request-service/routes/matching'));
+app.use('/api/requests', require('./request-service/routes/requests'));
 
 // ── Global Error Handler ───────────────────────────────────────────────
 app.use((err, req, res, next) => {
@@ -95,8 +129,22 @@ app.use((err, req, res, next) => {
 });
 
 // ── Start Server ──────────────────────────────────────────────────────────
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Unified Backend running on http://0.0.0.0:${PORT}`);
-  console.log(`🤖 AI Chat Route: POST /api/ai/chat`);
-  console.log(`📁 Routes consolidated: 5 microservices -> 1 engine`);
+const server = app.listen(PORT, '0.0.0.0', () => {
+  console.log('\n' + '='.repeat(50));
+  console.log(`🚀 UNIFIED BACKEND ENGINE STARTED`);
+  console.log(`📍 URL: http://localhost:${PORT}`);
+  console.log(`🩺 Health Check: http://localhost:${PORT}/health`);
+  console.log(`🤖 AI Chat: POST /api/ai/chat`);
+  console.log(`📁 Microservices Consolidated: 5 -> 1`);
+  console.log('='.repeat(50) + '\n');
+});
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`❌ FATAL: Port ${PORT} is already in use.`);
+    console.error(`👉 Try killing the existing process or use a different PORT in .env`);
+    process.exit(1);
+  } else {
+    console.error(`❌ Server Error:`, err.message);
+  }
 });

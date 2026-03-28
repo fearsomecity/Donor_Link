@@ -6,9 +6,10 @@ const authMiddleware = require('../middleware/authMiddleware');
 // Get user notifications
 router.get('/', authMiddleware, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('notifications');
+    const user = await User.findById(req.user.id).select('donorProfile.notifications');
     if (!user) return res.status(404).json({ message: 'User not found' });
-    res.json(user.notifications.sort((a, b) => b.createdAt - a.createdAt));
+    const notifications = user.donorProfile?.notifications || [];
+    res.json(notifications.sort((a, b) => b.createdAt - a.createdAt));
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
   }
@@ -18,9 +19,11 @@ router.get('/', authMiddleware, async (req, res) => {
 router.put('/:id/read', authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    const notification = user.notifications.id(req.params.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const notification = user.donorProfile?.notifications?.id(req.params.id);
     if (!notification) return res.status(404).json({ message: 'Notification not found' });
-    
+
     notification.read = true;
     await user.save();
     res.json({ message: 'Marked as read' });

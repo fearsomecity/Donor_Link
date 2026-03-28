@@ -44,7 +44,7 @@ export default function BookAppointment() {
         hospitalName: selectedHospital.name,
         date,
         time,
-        bloodType: user.profile.bloodType
+        bloodType: user?.profile?.bloodType || ''
       }, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -183,7 +183,7 @@ export default function BookAppointment() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-xs font-bold text-neutral-400 uppercase">Blood Type</span>
-                    <span className="font-bold text-crimson-600">{user.profile.bloodType}</span>
+                    <span className="font-bold text-crimson-600">{user?.profile?.bloodType || '—'}</span>
                   </div>
                 </div>
 
