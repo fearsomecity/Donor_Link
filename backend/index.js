@@ -51,8 +51,8 @@ A user is asking: "${message}"
 
 Provide a helpful, concise, and scientifically accurate answer about blood donation, hospital features, or medical concerns. Keep your answer encouraging and under 100 words.`;
 
-  // Model preference order — update here if a model is deprecated
-  const modelCandidates = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-2.0-flash-lite', 'gemini-1.5-pro'];
+  // Recommended production models with maximum fallback robustness:
+  const modelCandidates = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-flash-latest', 'gemini-pro'];
 
   const key = process.env.GEMINI_API_KEY;
   if (!key) {
@@ -73,10 +73,13 @@ Provide a helpful, concise, and scientifically accurate answer about blood donat
     } catch (error) {
       console.error(`❌ Model ${modelName} failed: ${error.message}`);
       lastError = error;
-      // If it's a rate-limit (429) error, don't try other models — surface it clearly
+      // Wait and try fallback if rate-limited, else log and move on
       if (error.message?.includes('429') || error.message?.includes('RESOURCE_EXHAUSTED')) {
+        console.warn(`⚠️ Rate limit hit for ${modelName}`);
+        
+        // Immediately return 429 if we hit it, because quotas apply globally to the API Key
         return res.status(429).json({ 
-          error: 'AI assistant is temporarily busy. Please try again in a few seconds.',
+          error: 'Your Google Gemini API free-tier quota has been exhausted or is set to 0 in your region. Please check your Google AI Studio billing.',
           details: error.message
         });
       }

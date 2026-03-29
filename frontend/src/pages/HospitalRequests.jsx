@@ -74,7 +74,7 @@ export default function HospitalRequests() {
 
   if (loading) {
     return (
-      <div className="flex-1 min-h-screen bg-neutral-50/50 flex items-center justify-center">
+      <div className="flex-1 min-h-screen bg-neutral-50/50 dark:bg-[#000000] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-16 h-16 bg-crimson-50 rounded-2xl flex items-center justify-center animate-pulse-slow">
             <RefreshCw className="w-8 h-8 text-crimson-600 animate-spin" />
@@ -86,24 +86,24 @@ export default function HospitalRequests() {
   }
 
   return (
-    <div className="relative min-h-screen bg-neutral-50/50 pt-32 pb-20 px-6 overflow-hidden">
+    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#000000] pt-32 pb-20 px-6 overflow-hidden">
       {/* Aesthetic Background Elements */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-crimson-100/30 rounded-full blur-[100px] animate-float" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-50/30 rounded-full blur-[100px] animate-float" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-crimson-100/30 rounded-full blur-[100px] animate-float dark:hidden dark:hidden" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-50/30 rounded-full blur-[100px] animate-float dark:hidden" style={{ animationDelay: '2s' }} />
 
       <div className="relative max-w-6xl mx-auto z-10">
         <header className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 animate-fade-in-up">
           <div>
-            <div className="inline-flex items-center gap-2 bg-neutral-900 text-white text-[10px] font-bold px-3 py-1 rounded-full mb-6 tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 bg-neutral-900 dark:bg-[#111] text-white text-[10px] font-bold px-3 py-1 rounded-full mb-6 tracking-widest uppercase">
               <Activity className="w-3 h-3 text-crimson-500" />
               Live Demand Center
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-neutral-900 tracking-tightest mb-4 font-header">My Requests</h1>
+            <h1 className="text-5xl md:text-7xl font-black text-neutral-900 dark:text-white tracking-tightest mb-4 font-header">My Requests</h1>
             <p className="text-xl text-neutral-500 max-w-2xl font-medium">Manage and monitor your hospital's urgent blood requirements in real-time.</p>
           </div>
           <button 
             onClick={() => setShowModal(true)} 
-            className="btn-primary px-8 py-5 rounded-2xl font-bold flex items-center gap-3 group active:scale-95 shadow-xl shadow-crimson-100 overflow-hidden"
+            className="btn-primary px-8 py-5 rounded-2xl font-bold flex items-center gap-3 group active:scale-95 shadow-xl dark:shadow-none shadow-crimson-100 overflow-hidden"
           >
             <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
             <span className="relative z-10">Broadcast New Request</span>
@@ -111,9 +111,9 @@ export default function HospitalRequests() {
           </button>
         </header>
 
-        <div className="glass rounded-[3rem] overflow-hidden shadow-2xl shadow-neutral-200/50 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-           <div className="p-10 border-b border-neutral-100 flex items-center justify-between bg-white/50">
-              <h2 className="text-2xl font-black text-neutral-900 font-header flex items-center gap-3">
+        <div className="glass rounded-[3rem] overflow-hidden shadow-2xl dark:shadow-none shadow-neutral-200/50 dark:shadow-none animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+           <div className="p-10 border-b border-neutral-100 dark:border-[#222] flex items-center justify-between bg-white/50">
+              <h2 className="text-2xl font-black text-neutral-900 dark:text-white font-header flex items-center gap-3">
                 <AlertCircle className="w-6 h-6 text-crimson-600" />
                 Active Broadcasts
               </h2>
@@ -128,7 +128,7 @@ export default function HospitalRequests() {
           <div className="p-8 space-y-6 min-h-[400px]">
             {myRequests.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-32 text-center">
-                <div className="w-24 h-24 bg-neutral-50 rounded-[2.5rem] flex items-center justify-center mb-6 border border-neutral-100">
+                <div className="w-24 h-24 bg-neutral-50 dark:bg-[#000000] rounded-[2.5rem] flex items-center justify-center mb-6 border border-neutral-100 dark:border-[#222]">
                   <Terminal className="w-10 h-10 text-neutral-300" />
                 </div>
                 <p className="text-xl font-bold text-neutral-400 font-header">No active requests found.</p>
@@ -139,14 +139,14 @@ export default function HospitalRequests() {
                 {myRequests.map((req, i) => (
                   <div 
                     key={req._id} 
-                    className="group p-8 rounded-[2.5rem] bg-white border border-neutral-100 hover:border-crimson-200 transition-all duration-500 shadow-sm hover:shadow-xl hover:shadow-crimson-500/5 animate-fade-in-up"
+                    className="group p-8 rounded-[2.5rem] bg-white dark:bg-[#111] border border-neutral-100 dark:border-[#222] hover:border-crimson-200 transition-all duration-500 shadow-sm dark:shadow-none hover:shadow-xl dark:shadow-none hover:shadow-crimson-500/5 animate-fade-in-up"
                     style={{ animationDelay: `${0.1 + i * 0.05}s` }}
                   >
                     <div className="flex items-start justify-between mb-8">
                       <div className="flex items-center gap-6">
                         <div className={`w-20 h-20 rounded-3xl flex flex-col items-center justify-center font-black transition-all group-hover:scale-110 ${
                           req.urgencyLevel === 'critical' 
-                            ? 'bg-red-600 text-white shadow-xl shadow-red-100' 
+                            ? 'bg-red-600 text-white shadow-xl dark:shadow-none shadow-red-100' 
                             : 'bg-crimson-50 text-crimson-600'
                         }`}>
                            <Droplets className="w-5 h-5 mb-1" />
@@ -159,7 +159,7 @@ export default function HospitalRequests() {
                             <Activity className="w-3 h-3" />
                             {req.urgencyLevel} Urgency
                           </div>
-                          <h3 className="text-2xl font-black text-neutral-900 font-header">{req.unitsNeeded} Units Required</h3>
+                          <h3 className="text-2xl font-black text-neutral-900 dark:text-white font-header">{req.unitsNeeded} Units Required</h3>
                         </div>
                       </div>
                     </div>
@@ -167,13 +167,13 @@ export default function HospitalRequests() {
                     <div className="space-y-4 mb-8">
                        <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-widest py-3 border-b border-neutral-50">
                           <span className="text-neutral-400">Broadcast Date</span>
-                          <span className="text-neutral-900 flex items-center gap-2">
+                          <span className="text-neutral-900 dark:text-white flex items-center gap-2">
                              <Calendar className="w-3.5 h-3.5 text-crimson-600" />
                              {new Date(req.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                           </span>
                        </div>
                        {req.message && (
-                         <div className="p-4 rounded-2xl bg-neutral-50/50 text-sm text-neutral-500 font-medium italic border border-neutral-100/50">
+                         <div className="p-4 rounded-2xl bg-neutral-50/50 dark:bg-[#000000] text-sm text-neutral-500 font-medium italic border border-neutral-100 dark:border-[#222]/50">
                            "{req.message}"
                          </div>
                        )}
@@ -184,7 +184,7 @@ export default function HospitalRequests() {
                           <CheckCircle className="w-4 h-4" />
                           Mark Resolved
                        </button>
-                       <button onClick={() => handleDeleteRequest(req._id)} className="w-14 h-14 rounded-2xl bg-neutral-50 text-neutral-400 hover:bg-crimson-50 hover:text-crimson-600 transition-all flex items-center justify-center">
+                       <button onClick={() => handleDeleteRequest(req._id)} className="w-14 h-14 rounded-2xl bg-neutral-50 dark:bg-[#000000] text-neutral-400 hover:bg-crimson-50 hover:text-crimson-600 transition-all flex items-center justify-center">
                           <Trash2 className="w-5 h-5" />
                        </button>
                     </div>
@@ -198,9 +198,9 @@ export default function HospitalRequests() {
 
       {/* Modern Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-neutral-900/60 backdrop-blur-md animate-fade-in">
-           <div className="relative bg-white rounded-[3.5rem] w-full max-w-xl shadow-[0_32px_128px_-16px_rgba(0,0,0,0.3)] border border-neutral-100 overflow-hidden flex flex-col animate-fade-in-up">
-              <div className="p-10 bg-neutral-900 text-white flex items-center justify-between">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-neutral-900/60 backdrop-blur-md dark:backdrop-blur-none animate-fade-in">
+           <div className="relative bg-white dark:bg-[#111] rounded-[3.5rem] w-full max-w-xl shadow-[0_32px_128px_-16px_rgba(0,0,0,0.3)] border border-neutral-100 dark:border-[#222] overflow-hidden flex flex-col animate-fade-in-up">
+              <div className="p-10 bg-neutral-900 dark:bg-[#111] text-white flex items-center justify-between">
                  <div>
                     <div className="inline-flex items-center gap-2 text-crimson-500 text-[10px] font-black tracking-widest uppercase mb-2">
                        <Activity className="w-3 h-3" />
@@ -221,7 +221,7 @@ export default function HospitalRequests() {
                           <select 
                              value={newRequest.bloodType} 
                              onChange={(e) => setNewRequest({...newRequest, bloodType: e.target.value})} 
-                             className="w-full h-16 px-6 rounded-2xl bg-neutral-50 border border-neutral-100 outline-none text-lg font-black font-header appearance-none focus:bg-white focus:border-crimson-500 transition-all"
+                             className="w-full h-16 px-6 rounded-2xl bg-neutral-50 dark:bg-[#000000] border border-neutral-100 dark:border-[#222] outline-none text-lg font-black font-header appearance-none focus:bg-white dark:bg-[#111] focus:border-crimson-500 transition-all"
                           >
                             {bloodTypes.map(t => <option key={t} value={t}>{t}</option>)}
                           </select>
@@ -236,7 +236,7 @@ export default function HospitalRequests() {
                          type="number" 
                          value={newRequest.unitsNeeded} 
                          onChange={(e) => setNewRequest({...newRequest, unitsNeeded: parseInt(e.target.value) || 0})} 
-                         className="w-full h-16 px-6 rounded-2xl bg-neutral-50 border border-neutral-100 outline-none text-xl font-black font-header focus:bg-white focus:border-crimson-500 transition-all" 
+                         className="w-full h-16 px-6 rounded-2xl bg-neutral-50 dark:bg-[#000000] border border-neutral-100 dark:border-[#222] outline-none text-xl font-black font-header focus:bg-white dark:bg-[#111] focus:border-crimson-500 transition-all" 
                        />
                     </div>
                  </div>
@@ -251,8 +251,8 @@ export default function HospitalRequests() {
                            onClick={() => setNewRequest({...newRequest, urgencyLevel: level})} 
                            className={`h-14 rounded-2xl text-[10px] font-black uppercase tracking-widest border transition-all ${
                              newRequest.urgencyLevel === level 
-                               ? 'bg-crimson-600 text-white border-crimson-700 shadow-xl shadow-crimson-100 scale-[1.02]' 
-                               : 'bg-white text-neutral-400 border-neutral-100 hover:bg-neutral-50'
+                               ? 'bg-crimson-600 text-white border-crimson-700 shadow-xl dark:shadow-none shadow-crimson-100 scale-[1.02]' 
+                               : 'bg-white dark:bg-[#111] text-neutral-400 border-neutral-100 dark:border-[#222] hover:bg-neutral-50 dark:bg-[#000000]'
                            }`}
                          >
                             {level}
@@ -267,11 +267,11 @@ export default function HospitalRequests() {
                       placeholder="Special instructions or patient requirements..."
                       value={newRequest.message} 
                       onChange={(e) => setNewRequest({...newRequest, message: e.target.value})} 
-                      className="w-full h-32 p-6 rounded-[2rem] bg-neutral-50 border border-neutral-100 outline-none text-base font-medium resize-none focus:bg-white focus:border-crimson-500 transition-all shadow-inner" 
+                      className="w-full h-32 p-6 rounded-[2rem] bg-neutral-50 dark:bg-[#000000] border border-neutral-100 dark:border-[#222] outline-none text-base font-medium resize-none focus:bg-white dark:bg-[#111] focus:border-crimson-500 transition-all shadow-inner" 
                     />
                  </div>
 
-                 <button type="submit" className="btn-primary w-full py-6 rounded-[2rem] font-black text-lg shadow-2xl shadow-crimson-100 active:scale-95 transition-all">
+                 <button type="submit" className="btn-primary w-full py-6 rounded-[2rem] font-black text-lg shadow-2xl dark:shadow-none shadow-crimson-100 active:scale-95 transition-all">
                     Broadcast Request
                  </button>
               </form>

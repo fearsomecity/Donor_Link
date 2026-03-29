@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Heart, Menu, X, ChevronDown, LogOut, User, LayoutDashboard, Database, ClipboardList, PlusCircle, Sparkles, Bell } from 'lucide-react';
+import { Heart, Menu, X, ChevronDown, LogOut, User, LayoutDashboard, Database, ClipboardList, PlusCircle, Sparkles, Bell, Moon, Sun } from 'lucide-react';
 import axios from 'axios';
 import useAuthStore from '../store/authStore';
 
@@ -10,8 +10,23 @@ export default function Navbar() {
   const { isAuthenticated, logout, user } = useAuthStore();
   const [notifications, setNotifications] = useState([]);
   const [showNotifications, setShowNotifications] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  });
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
+
+  const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -55,8 +70,8 @@ export default function Navbar() {
       to={to} 
       className={`text-sm font-semibold transition-all duration-300 ${
         location.pathname === to 
-          ? 'text-crimson-600' 
-          : 'text-neutral-500 hover:text-crimson-600'
+          ? 'text-crimson-600 dark:text-crimson-500' 
+          : 'text-neutral-500 dark:text-neutral-400 hover:text-crimson-600 dark:hover:text-crimson-400'
       }`}
     >
       {children}
@@ -71,10 +86,10 @@ export default function Navbar() {
         scrolled ? 'glass rounded-[2rem] mx-6' : 'bg-transparent'
       }`}>
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-crimson-600 flex items-center justify-center shadow-lg shadow-crimson-200 group-hover:scale-110 transition-transform duration-300">
+          <div className="w-10 h-10 rounded-xl bg-crimson-600 flex items-center justify-center shadow-lg shadow-crimson-200 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
             <Heart className="w-5 h-5 text-white fill-white animate-pulse" />
           </div>
-          <span className="text-xl font-bold text-neutral-900 tracking-tight font-header">
+          <span className="text-xl font-bold text-neutral-900 dark:text-white tracking-tight font-header relative z-10 transition-colors duration-300">
             Donor<span className="text-crimson-600">Net</span>
           </span>
         </Link>
@@ -84,7 +99,7 @@ export default function Navbar() {
           {isAuthenticated ? (
             <>
               <div className="relative group">
-                <button className="text-sm font-bold text-neutral-700 hover:text-crimson-600 transition-all flex items-center gap-2 py-4">
+                <button className="text-sm font-bold text-neutral-700 dark:text-neutral-200 hover:text-crimson-600 dark:hover:text-crimson-500 transition-all flex items-center gap-2 py-4">
                   <User className="w-4 h-4" />
                   {user?.profile?.name || user?.profile?.hospitalName || 'My Account'}
                   <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
@@ -111,11 +126,19 @@ export default function Navbar() {
                 </div>
               </div>
 
+              {/* Theme Toggle */}
+              <button 
+                onClick={toggleTheme}
+                className="p-3 mr-2 rounded-xl bg-neutral-100/50 text-neutral-500 hover:text-crimson-600 hover:bg-crimson-50 transition-all dark:bg-[#111] dark:text-neutral-400 dark:hover:text-crimson-400 dark:hover:bg-[#222]"
+              >
+                {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+
               {/* Notifications Bell */}
               <div className="relative">
                 <button 
                   onClick={() => setShowNotifications(!showNotifications)}
-                  className="p-3 rounded-xl bg-neutral-100/50 text-neutral-500 hover:text-crimson-600 hover:bg-crimson-50 transition-all relative"
+                  className="p-3 rounded-xl bg-neutral-100/50 text-neutral-500 hover:text-crimson-600 hover:bg-crimson-50 transition-all dark:bg-[#111] dark:hover:bg-[#222] relative"
                 >
                   <Bell className="w-5 h-5" />
                   {unreadCount > 0 && (
@@ -141,10 +164,10 @@ export default function Navbar() {
                               if (n.link) navigate(n.link);
                               setShowNotifications(false);
                             }}
-                            className={`p-4 rounded-2xl transition-all cursor-pointer ${n.read ? 'bg-neutral-50 opacity-60' : 'bg-white border border-crimson-100 shadow-sm'}`}
+                            className={`p-4 rounded-2xl transition-all cursor-pointer ${n.read ? 'bg-neutral-50 dark:bg-[#111]' : 'bg-white dark:bg-[#0a0a0a] border border-crimson-100 dark:border-[#222] shadow-sm dark:shadow-none'}`}
                           >
-                            <p className="text-xs font-bold text-neutral-900 mb-1">{n.title}</p>
-                            <p className="text-[10px] font-medium text-neutral-500 leading-tight">{n.message}</p>
+                            <p className="text-xs font-bold text-neutral-900 dark:text-white mb-1">{n.title}</p>
+                            <p className="text-[10px] font-medium text-neutral-500 dark:text-neutral-400 leading-tight">{n.message}</p>
                           </div>
                         ))
                       ) : (
@@ -171,13 +194,21 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Mobile Hamburger */}
-        <button
-          className="md:hidden p-2 rounded-xl hover:bg-neutral-100 transition-colors"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile Hamburger & Theme Toggle */}
+        <div className="md:hidden flex items-center gap-2">
+          <button 
+            onClick={toggleTheme}
+            className="p-2 rounded-xl text-neutral-500 hover:bg-neutral-100 transition-colors dark:text-neutral-400 dark:hover:bg-[#111]"
+          >
+            {isDarkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+          </button>
+          <button
+            className="p-2 rounded-xl hover:bg-neutral-100 transition-colors dark:hover:bg-[#111] dark:text-white"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -185,9 +216,9 @@ export default function Navbar() {
         <div className="md:hidden absolute top-full left-6 right-6 mt-2 glass p-6 rounded-3xl space-y-4 animate-fade-in-up">
           {isAuthenticated ? (
             <>
-              <div className="pb-4 border-b border-neutral-100 mb-4">
+              <div className="pb-4 border-b border-neutral-100 dark:border-[#222] mb-4">
                 <p className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-1">Signed in as</p>
-                <p className="text-lg font-bold text-neutral-900">{user?.profile?.name || user?.profile?.hospitalName}</p>
+                <p className="text-lg font-bold text-neutral-900 dark:text-white">{user?.profile?.name || user?.profile?.hospitalName}</p>
               </div>
               {user?.role === 'donor' ? (
                 <>
@@ -212,7 +243,7 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link onClick={() => setMobileMenuOpen(false)} to="/login" className="block w-full py-3 text-center text-sm font-bold text-neutral-700">Log In</Link>
+              <Link onClick={() => setMobileMenuOpen(false)} to="/login" className="block w-full py-3 text-center text-sm font-bold text-neutral-700 dark:text-neutral-200">Log In</Link>
               <Link onClick={() => setMobileMenuOpen(false)} to="/register/donor" className="btn-primary w-full block text-center">Get Started</Link>
             </>
           )}
@@ -224,7 +255,7 @@ export default function Navbar() {
 
 function DropdownLink({ to, children, icon }) {
   return (
-    <Link to={to} className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-neutral-600 hover:bg-crimson-50 hover:text-crimson-600 rounded-xl transition-all duration-200">
+    <Link to={to} className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-neutral-600 dark:text-neutral-300 hover:bg-crimson-50 dark:hover:bg-crimson-900/30 hover:text-crimson-600 dark:hover:text-crimson-400 rounded-xl transition-all duration-200">
       {icon && <span className="w-4 h-4">{icon}</span>}
       {children}
     </Link>
@@ -233,7 +264,7 @@ function DropdownLink({ to, children, icon }) {
 
 function MobileLink({ to, children, onClick }) {
   return (
-    <Link onClick={onClick} to={to} className="block w-full py-3 text-sm font-bold text-neutral-700 hover:text-crimson-600 transition-colors">
+    <Link onClick={onClick} to={to} className="block w-full py-3 text-sm font-bold text-neutral-700 dark:text-neutral-300 hover:text-crimson-600 dark:hover:text-crimson-400 transition-colors">
       {children}
     </Link>
   );

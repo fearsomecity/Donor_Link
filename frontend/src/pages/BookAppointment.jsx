@@ -59,20 +59,20 @@ export default function BookAppointment() {
   const timeSlots = ["09:00 AM", "10:00 AM", "11:00 AM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM"];
 
   return (
-    <div className="relative min-h-screen bg-neutral-50/50 pt-32 pb-20 px-6 overflow-hidden">
+    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#000000] pt-32 pb-20 px-6 overflow-hidden">
       {/* Background Blobs */}
-      <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-crimson-100/30 rounded-full blur-[100px] animate-float" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[30%] bg-blue-50/50 rounded-full blur-[100px] animate-float" style={{ animationDelay: '3s' }} />
+      <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-crimson-100/30 rounded-full blur-[100px] animate-float dark:hidden dark:hidden" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[30%] bg-blue-50/50 rounded-full blur-[100px] animate-float dark:hidden" style={{ animationDelay: '3s' }} />
 
       <div className="relative max-w-2xl mx-auto z-10">
         <header className="text-center mb-12 animate-fade-in-up">
-          <h1 className="text-4xl md:text-5xl font-black text-neutral-900 tracking-tightest mb-4 font-header">
+          <h1 className="text-4xl md:text-5xl font-black text-neutral-900 dark:text-white tracking-tightest mb-4 font-header">
             Book Your <span className="text-gradient">Next Mission</span>
           </h1>
           <p className="text-neutral-500 font-medium">Choose a convenient time and place to save lives.</p>
         </header>
 
-        <div className="glass rounded-[2.5rem] overflow-hidden shadow-2xl shadow-neutral-200/50 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+        <div className="glass rounded-[2.5rem] overflow-hidden shadow-2xl dark:shadow-none shadow-neutral-200/50 dark:shadow-none animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
           {/* Progress Bar */}
           <div className="h-1.5 bg-neutral-100 w-full flex">
             <div className={`h-full bg-crimson-600 transition-all duration-700 ${step === 1 ? 'w-1/3' : step === 2 ? 'w-2/3' : 'w-full'}`} />
@@ -82,7 +82,7 @@ export default function BookAppointment() {
             {step === 1 && (
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-2xl font-bold text-neutral-900 mb-2 font-header">Select Hospital</h2>
+                  <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2 font-header">Select Hospital</h2>
                   <p className="text-sm text-neutral-500 font-medium">Choose a donation center near you.</p>
                 </div>
                 <div className="space-y-4">
@@ -90,13 +90,13 @@ export default function BookAppointment() {
                     <button 
                       key={h.id}
                       onClick={() => setSelectedHospital(h)}
-                      className={`w-full flex items-center gap-4 p-6 rounded-3xl border-2 transition-all duration-300 text-left ${selectedHospital?.id === h.id ? 'border-crimson-600 bg-crimson-50/30' : 'border-neutral-50 bg-white hover:border-neutral-200'}`}
+                      className={`w-full flex items-center gap-4 p-6 rounded-3xl border-2 transition-all duration-300 text-left ${selectedHospital?.id === h.id ? 'border-crimson-600 bg-crimson-50/30' : 'border-neutral-50 bg-white dark:bg-[#111] hover:border-neutral-200 dark:border-[#333]'}`}
                     >
                       <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${selectedHospital?.id === h.id ? 'bg-crimson-600 text-white' : 'bg-neutral-100 text-neutral-400'}`}>
                         <Hospital className="w-6 h-6" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-bold text-neutral-900">{h.name}</h3>
+                        <h3 className="font-bold text-neutral-900 dark:text-white">{h.name}</h3>
                         <p className="text-xs font-medium text-neutral-500">{h.address} • {h.zip}</p>
                       </div>
                       <ChevronRight className={`w-5 h-5 transition-transform ${selectedHospital?.id === h.id ? 'translate-x-1 text-crimson-600' : 'text-neutral-300'}`} />
@@ -116,7 +116,7 @@ export default function BookAppointment() {
             {step === 2 && (
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-2xl font-bold text-neutral-900 mb-2 font-header">Pick Date & Time</h2>
+                  <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2 font-header">Pick Date & Time</h2>
                   <p className="text-sm text-neutral-500 font-medium">{selectedHospital.name}</p>
                 </div>
                 <div className="space-y-6">
@@ -137,7 +137,7 @@ export default function BookAppointment() {
                         <button 
                           key={t}
                           onClick={() => setTime(t)}
-                          className={`p-4 rounded-2xl text-sm font-bold transition-all border-2 ${time === t ? 'bg-neutral-900 text-white border-neutral-900' : 'bg-white text-neutral-600 border-neutral-100 hover:border-neutral-300'}`}
+                          className={`p-4 rounded-2xl text-sm font-bold transition-all border-2 ${time === t ? 'bg-neutral-900 dark:bg-[#111] text-white border-neutral-900' : 'bg-white dark:bg-[#111] text-neutral-600 border-neutral-100 dark:border-[#222] hover:border-neutral-300'}`}
                         >
                           {t}
                         </button>
@@ -164,22 +164,22 @@ export default function BookAppointment() {
                   <Clock className="w-10 h-10" />
                 </div>
                 <div>
-                  <h2 className="text-3xl font-black text-neutral-900 mb-2 font-header">Confirm Details</h2>
+                  <h2 className="text-3xl font-black text-neutral-900 dark:text-white mb-2 font-header">Confirm Details</h2>
                   <p className="text-neutral-500">Please review your appointment summary.</p>
                 </div>
                 
-                <div className="bg-neutral-50 rounded-[2rem] p-8 text-left space-y-4">
+                <div className="bg-neutral-50 dark:bg-[#000000] rounded-[2rem] p-8 text-left space-y-4">
                   <div className="flex justify-between">
                     <span className="text-xs font-bold text-neutral-400 uppercase">Hospital</span>
-                    <span className="font-bold text-neutral-900">{selectedHospital.name}</span>
+                    <span className="font-bold text-neutral-900 dark:text-white">{selectedHospital.name}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-xs font-bold text-neutral-400 uppercase">Date</span>
-                    <span className="font-bold text-neutral-900">{new Date(date).toLocaleDateString(undefined, { dateStyle: 'long' })}</span>
+                    <span className="font-bold text-neutral-900 dark:text-white">{new Date(date).toLocaleDateString(undefined, { dateStyle: 'long' })}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-xs font-bold text-neutral-400 uppercase">Time Slot</span>
-                    <span className="font-bold text-neutral-900">{time}</span>
+                    <span className="font-bold text-neutral-900 dark:text-white">{time}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-xs font-bold text-neutral-400 uppercase">Blood Type</span>
@@ -207,7 +207,7 @@ export default function BookAppointment() {
                 <div className="w-24 h-24 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8 animate-[shimmer_2s_infinite]">
                   <CheckCircle2 className="w-12 h-12" />
                 </div>
-                <h2 className="text-4xl font-black text-neutral-900 mb-4 font-header">Booking Confirmed!</h2>
+                <h2 className="text-4xl font-black text-neutral-900 dark:text-white mb-4 font-header">Booking Confirmed!</h2>
                 <p className="text-neutral-500 max-w-sm mx-auto mb-12 font-medium">
                   Thank you for your commitment. You'll receive a reminder 24 hours before your session.
                 </p>

@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
 
 @theme {
   /* Crimson Red palette */
@@ -62,11 +64,11 @@
 
 @layer components {
   .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+    @apply bg-white/70 dark:!bg-[#000000] backdrop-blur-[20px] dark:backdrop-blur-none border border-white/20 dark:!border-[#111] shadow-xl dark:!shadow-none;
   }
   
   .glass-dark {
-    @apply bg-neutral-900/80 backdrop-blur-xl border border-white/10 shadow-2xl;
+    @apply bg-neutral-900/80 dark:bg-[#050505] backdrop-blur-xl dark:backdrop-blur-none border border-white/10 dark:!border-[#111] shadow-2xl dark:!shadow-none;
   }
 
   .text-gradient {
@@ -74,18 +76,17 @@
   }
 
   .btn-primary {
-    @apply relative overflow-hidden bg-crimson-600 hover:bg-crimson-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-crimson-200 active:scale-[0.98] disabled:opacity-50;
+    @apply relative overflow-hidden bg-crimson-600 hover:bg-crimson-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg dark:hover:shadow-none hover:shadow-crimson-200 active:scale-[0.98] disabled:opacity-50;
   }
 
   .input-field {
-    @apply w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white/50 outline-none focus:border-crimson-500 focus:ring-4 focus:ring-crimson-500/10 transition-all duration-300 text-sm text-neutral-900 placeholder:text-neutral-400;
+    @apply w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-[#222] bg-white/50 dark:bg-[#0a0a0a] outline-none focus:border-crimson-500 dark:focus:border-crimson-600 focus:ring-4 focus:ring-crimson-500/10 transition-all duration-300 text-sm text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600;
   }
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: #fafafa;
-  color: var(--color-neutral-900);
+  @apply bg-[#fafafa] dark:bg-[#000000] text-neutral-900 dark:text-neutral-50 transition-colors duration-300;
   -webkit-font-smoothing: antialiased;
 }
 

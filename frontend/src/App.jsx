@@ -19,7 +19,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 export default function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-white font-sans flex flex-col">
+      <div className="min-h-screen font-sans flex flex-col transition-colors duration-300">
         <Navbar />
         <main className="flex-1 flex flex-col pt-16">
           <Routes>

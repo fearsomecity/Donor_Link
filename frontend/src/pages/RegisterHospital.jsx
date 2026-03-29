@@ -46,22 +46,22 @@ export default function RegisterHospital() {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center p-6 overflow-hidden bg-neutral-50/50">
+    <div className="relative min-h-screen flex items-center justify-center p-6 overflow-hidden bg-neutral-50/50 dark:bg-[#000000]">
       {/* Aesthetic Background Elements */}
-      <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-crimson-100/50 rounded-full blur-[100px] animate-float" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-50/50 rounded-full blur-[100px] animate-float" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-crimson-100/50 rounded-full blur-[100px] animate-float dark:hidden dark:hidden" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-50/50 rounded-full blur-[100px] animate-float dark:hidden" style={{ animationDelay: '2s' }} />
 
       <div className="relative w-full max-w-2xl glass p-10 rounded-[2.5rem] animate-fade-in-up mt-20 mb-20">
         <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-neutral-900 rounded-2xl mb-6 animate-pulse-slow">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-neutral-900 dark:bg-[#111] rounded-2xl mb-6 animate-pulse-slow">
             <Activity className="w-8 h-8 text-crimson-500" />
           </div>
-          <h1 className="text-4xl font-bold text-neutral-900 tracking-tight mb-2 font-header">Register Hospital</h1>
+          <h1 className="text-4xl font-bold text-neutral-900 dark:text-white tracking-tight mb-2 font-header">Register Hospital</h1>
           <p className="text-neutral-500 font-medium font-sans">Join our network to manage blood inventory efficiently.</p>
         </div>
 
         {error && (
-          <div className="mb-8 p-4 bg-red-50/80 backdrop-blur-sm text-red-700 text-sm rounded-xl border border-red-100 flex items-center gap-3 animate-fade-in-up">
+          <div className="mb-8 p-4 bg-red-50/80 backdrop-blur-sm dark:backdrop-blur-none text-red-700 text-sm rounded-xl border border-red-100 flex items-center gap-3 animate-fade-in-up">
             <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
             {error}
           </div>
@@ -189,7 +189,7 @@ export default function RegisterHospital() {
           </button>
         </form>
 
-        <div className="mt-10 pt-8 border-t border-neutral-100 text-center">
+        <div className="mt-10 pt-8 border-t border-neutral-100 dark:border-[#222] text-center">
           <p className="text-sm text-neutral-500 font-medium">
             Already a partner?{' '}
             <Link to="/login" className="text-crimson-600 font-bold hover:text-crimson-700 hover:underline transition-all">
