@@ -92,7 +92,7 @@ export default function AIAssistant() {
   };
 
   return (
-    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#050505] pt-28 pb-10 px-6 overflow-hidden flex flex-col transition-colors duration-500">
+    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#141414] pt-28 pb-10 px-6 overflow-hidden flex flex-col transition-colors duration-500">
       {/* Aesthetic Background Elements */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-crimson-100/30 rounded-full blur-[100px] animate-float dark:hidden dark:hidden" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-50/50 rounded-full blur-[100px] animate-float dark:hidden" style={{ animationDelay: '2s' }} />
@@ -101,7 +101,7 @@ export default function AIAssistant() {
         {/* Header Section */}
         <div className="flex items-center justify-between mb-8 px-4">
            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 bg-neutral-900 dark:bg-[#111] dark:border dark:border-[#222] rounded-2xl flex items-center justify-center shadow-xl dark:shadow-none">
+              <div className="w-14 h-14 bg-neutral-900 dark:bg-[#141414] dark:border dark:border-[#2a2a2a] rounded-2xl flex items-center justify-center shadow-xl dark:shadow-none">
                  <Bot className="w-8 h-8 text-crimson-500" />
               </div>
               <div>
@@ -112,13 +112,13 @@ export default function AIAssistant() {
                  </p>
               </div>
            </div>
-           <button onClick={clearChat} className="w-12 h-12 rounded-xl bg-white dark:bg-[#111] border border-neutral-100 dark:border-[#222] text-neutral-400 dark:text-neutral-500 hover:text-crimson-600 dark:hover:text-crimson-500 hover:border-crimson-100 dark:hover:border-[#333] transition-all flex items-center justify-center active:scale-90">
+           <button onClick={clearChat} className="w-12 h-12 rounded-xl bg-white dark:bg-[#141414] border border-neutral-100 dark:border-[#2a2a2a] text-neutral-400 dark:text-neutral-500 hover:text-crimson-600 dark:hover:text-crimson-500 hover:border-crimson-100 dark:hover:border-[#333] transition-all flex items-center justify-center active:scale-90">
               <Trash2 className="w-5 h-5" />
            </button>
         </div>
 
         {/* Chat Container */}
-        <div className="flex-1 glass dark:!bg-[#0a0a0a] dark:!border-[#1a1a1a] rounded-[2.5rem] flex flex-col overflow-hidden shadow-2xl dark:shadow-none shadow-neutral-200/50 dark:shadow-none transition-colors duration-500">
+        <div className="flex-1 glass dark:!bg-[#0a0a0a] dark:!border-[#141414] rounded-[2.5rem] flex flex-col overflow-hidden shadow-2xl dark:shadow-none shadow-neutral-200/50 dark:shadow-none transition-colors duration-500">
            <div 
              ref={scrollContainerRef}
              className="flex-1 overflow-y-auto p-8 space-y-8 custom-scrollbar scroll-smooth"
@@ -127,14 +127,14 @@ export default function AIAssistant() {
                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in-up`} style={{ animationDelay: `${i * 0.05}s` }}>
                    <div className={`flex gap-4 max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm dark:shadow-none ${
-                        msg.role === 'user' ? 'bg-neutral-800 dark:bg-[#222] text-white' : 'bg-crimson-600 text-white shadow-crimson-100 dark:shadow-none'
+                        msg.role === 'user' ? 'bg-neutral-800 dark:bg-[#2a2a2a] text-white' : 'bg-crimson-600 text-white shadow-crimson-100 dark:shadow-none'
                       }`}>
                          {msg.role === 'user' ? <User className="w-5 h-5" /> : <Sparkles className="w-5 h-5" />}
                       </div>
                       <div className={`p-6 rounded-[2rem] text-[15px] font-medium leading-relaxed shadow-sm dark:shadow-none transition-all hover:shadow-md ${
                         msg.role === 'user' 
-                          ? 'bg-neutral-900 dark:bg-[#1a1a1a] text-white rounded-tr-none' 
-                          : 'bg-white dark:bg-[#111] text-neutral-800 dark:text-neutral-300 border border-neutral-100 dark:border-[#222] rounded-tl-none'
+                          ? 'bg-neutral-900 dark:bg-[#141414] text-white rounded-tr-none' 
+                          : 'bg-white dark:bg-[#141414] text-neutral-800 dark:text-neutral-300 border border-neutral-100 dark:border-[#2a2a2a] rounded-tl-none'
                       }`}>
                         {msg.text}
                       </div>
@@ -147,7 +147,7 @@ export default function AIAssistant() {
                       <div className="w-10 h-10 rounded-xl bg-crimson-600 text-white flex items-center justify-center shrink-0">
                          <Bot className="w-5 h-5" />
                       </div>
-                      <div className="p-6 rounded-[2rem] bg-white dark:bg-[#111] border border-neutral-100 dark:border-[#222] text-neutral-400 dark:text-neutral-500 text-sm rounded-tl-none flex items-center gap-3 shadow-sm dark:shadow-none">
+                      <div className="p-6 rounded-[2rem] bg-white dark:bg-[#141414] border border-neutral-100 dark:border-[#2a2a2a] text-neutral-400 dark:text-neutral-500 text-sm rounded-tl-none flex items-center gap-3 shadow-sm dark:shadow-none">
                          <div className="w-2 h-2 rounded-full bg-crimson-300 animate-bounce" />
                          <div className="w-2 h-2 rounded-full bg-crimson-400 animate-bounce delay-100" />
                          <div className="w-2 h-2 rounded-full bg-crimson-500 animate-bounce delay-200" />
@@ -158,20 +158,20 @@ export default function AIAssistant() {
            </div>
 
            {/* Input Tool Bar */}
-           <div className="px-8 pb-8 pt-4 bg-white/50 dark:bg-[#0a0a0a]/90 backdrop-blur-xl border-t border-neutral-100 dark:border-[#1a1a1a] transition-colors duration-500">
+           <div className="px-8 pb-8 pt-4 bg-white/50 dark:bg-[#0a0a0a]/90 backdrop-blur-xl border-t border-neutral-100 dark:border-[#141414] transition-colors duration-500">
               <form onSubmit={handleSend} className="relative group">
                  <input 
                    type="text" 
                    value={input}
                    onChange={(e) => setInput(e.target.value)}
                    placeholder="Type your question about donation..."
-                   className="w-full pl-8 pr-20 py-6 bg-white dark:bg-[#111] border border-neutral-200 dark:border-[#222] rounded-[2rem] focus:border-crimson-500 focus:ring-8 focus:ring-crimson-500/5 dark:focus:ring-crimson-500/10 outline-none text-base font-semibold transition-all shadow-inner dark:shadow-none text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-300 dark:placeholder:text-neutral-600"
+                   className="w-full pl-8 pr-20 py-6 bg-white dark:bg-[#141414] border border-neutral-200 dark:border-[#2a2a2a] rounded-[2rem] focus:border-crimson-500 focus:ring-8 focus:ring-crimson-500/5 dark:focus:ring-crimson-500/10 outline-none text-base font-semibold transition-all shadow-inner dark:shadow-none text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-300 dark:placeholder:text-neutral-600"
                    disabled={loading}
                  />
                  <button 
                    type="submit"
                    disabled={!input.trim() || loading}
-                   className="absolute right-3 top-3 bottom-3 w-14 bg-neutral-900 dark:bg-[#222] text-white rounded-[1.5rem] flex items-center justify-center hover:bg-crimson-600 dark:hover:bg-crimson-600 disabled:opacity-30 disabled:hover:bg-neutral-900 dark:disabled:hover:bg-[#222] transition-all shadow-xl dark:shadow-none active:scale-95"
+                   className="absolute right-3 top-3 bottom-3 w-14 bg-neutral-900 dark:bg-[#2a2a2a] text-white rounded-[1.5rem] flex items-center justify-center hover:bg-crimson-600 dark:hover:bg-crimson-600 disabled:opacity-30 disabled:hover:bg-neutral-900 dark:disabled:hover:bg-[#2a2a2a] transition-all shadow-xl dark:shadow-none active:scale-95"
                  >
                    <Send className="w-5 h-5 ml-1 group-focus-within:translate-x-1 group-focus-within:-translate-y-1 transition-transform" />
                  </button>

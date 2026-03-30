@@ -43,14 +43,14 @@ export default function HospitalDashboard() {
   const inventoryTotal = Object.values(user?.profile?.inventory || {}).reduce((a, b) => a + b, 0);
 
   return (
-    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#000000] pt-32 pb-20 px-6 overflow-hidden">
+    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#0a0a0a] pt-32 pb-20 px-6 overflow-hidden">
       {/* Aesthetic Background Elements */}
       <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-crimson-100/30 rounded-full blur-[100px] animate-float dark:hidden dark:hidden" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-50/50 rounded-full blur-[100px] animate-float dark:hidden" style={{ animationDelay: '2s' }} />
 
       <div className="relative max-w-6xl mx-auto z-10">
         <header className="mb-16 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 bg-neutral-900 dark:bg-[#111] text-white text-[10px] font-bold px-3 py-1 rounded-full mb-6 tracking-widest uppercase shadow-lg">
+          <div className="inline-flex items-center gap-2 bg-neutral-900 dark:bg-[#141414] text-white text-[10px] font-bold px-3 py-1 rounded-full mb-6 tracking-widest uppercase shadow-lg">
             <Activity className="w-3 h-3 text-crimson-500" />
             Hospital Operations Control
           </div>
@@ -104,7 +104,7 @@ export default function HospitalDashboard() {
                   />
                 ))
               ) : (
-                <div className="p-12 border-2 border-dashed border-neutral-100 dark:border-[#222] rounded-3xl text-center">
+                <div className="p-12 border-2 border-dashed border-neutral-100 dark:border-[#2a2a2a] rounded-3xl text-center">
                   <p className="text-sm font-bold text-neutral-400 uppercase tracking-widest">No donors scheduled for today</p>
                 </div>
               )}
@@ -113,7 +113,7 @@ export default function HospitalDashboard() {
 
           <div className="glass p-10 rounded-[2.5rem]">
             <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 font-header">AI Support Center</h2>
-            <div className="bg-neutral-900 dark:bg-[#111] rounded-3xl p-8 text-white relative overflow-hidden group h-full flex flex-col justify-between">
+            <div className="bg-neutral-900 dark:bg-[#141414] rounded-3xl p-8 text-white relative overflow-hidden group h-full flex flex-col justify-between">
               <div className="absolute bottom-0 right-0 w-48 h-48 bg-crimson-600/30 blur-3xl group-hover:scale-150 transition-transform duration-700" />
               <p className="text-lg font-medium mb-8 relative z-10">
                 Optimize your inventory management with AI-driven demand forecasting and supply matching.
@@ -149,9 +149,9 @@ function DashboardCard({ icon, title, value, desc, link, highlight = false }) {
 
 function ScheduleItem({ donorName, bloodType, time, onComplete }) {
   return (
-    <div className="flex items-center justify-between p-6 bg-white dark:bg-[#111] rounded-2xl border border-neutral-100 dark:border-[#222] shadow-sm dark:shadow-none hover:border-crimson-100 transition-all group">
+    <div className="flex items-center justify-between p-6 bg-white dark:bg-[#141414] rounded-2xl border border-neutral-100 dark:border-[#2a2a2a] shadow-sm dark:shadow-none hover:border-crimson-100 transition-all group">
       <div className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-2xl bg-neutral-50 dark:bg-[#000000] flex items-center justify-center text-neutral-400 group-hover:bg-crimson-50 group-hover:text-crimson-600 transition-colors">
+        <div className="w-12 h-12 rounded-2xl bg-neutral-50 dark:bg-[#0a0a0a] flex items-center justify-center text-neutral-400 group-hover:bg-crimson-50 group-hover:text-crimson-600 transition-colors">
           <User className="w-6 h-6" />
         </div>
         <div>
@@ -166,7 +166,7 @@ function ScheduleItem({ donorName, bloodType, time, onComplete }) {
       </div>
       <button 
         onClick={onComplete}
-        className="w-10 h-10 rounded-full bg-neutral-50 dark:bg-[#000000] flex items-center justify-center text-neutral-300 hover:bg-green-600 hover:text-white transition-all shadow-sm dark:shadow-none"
+        className="w-10 h-10 rounded-full bg-neutral-50 dark:bg-[#0a0a0a] flex items-center justify-center text-neutral-300 hover:bg-green-600 hover:text-white transition-all shadow-sm dark:shadow-none"
         title="Mark as Complete"
       >
         <CheckCircle className="w-5 h-5" />

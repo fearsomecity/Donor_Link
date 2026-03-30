@@ -64,11 +64,11 @@
 
 @layer components {
   .glass {
-    @apply bg-white/70 dark:!bg-[#000000] backdrop-blur-[20px] dark:backdrop-blur-none border border-white/20 dark:!border-[#111] shadow-xl dark:!shadow-none;
+    @apply bg-white/70 dark:!bg-[#0a0a0a] backdrop-blur-[20px] dark:backdrop-blur-none border border-white/20 dark:!border-[#141414] shadow-xl dark:!shadow-none;
   }
   
   .glass-dark {
-    @apply bg-neutral-900/80 dark:bg-[#050505] backdrop-blur-xl dark:backdrop-blur-none border border-white/10 dark:!border-[#111] shadow-2xl dark:!shadow-none;
+    @apply bg-neutral-900/80 dark:bg-[#141414] backdrop-blur-xl dark:backdrop-blur-none border border-white/10 dark:!border-[#141414] shadow-2xl dark:!shadow-none;
   }
 
   .text-gradient {
@@ -76,20 +76,32 @@
   }
 
   .btn-primary {
-    @apply relative overflow-hidden bg-crimson-600 hover:bg-crimson-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg dark:hover:shadow-none hover:shadow-crimson-200 active:scale-[0.98] disabled:opacity-50;
+    @apply relative overflow-hidden bg-crimson-600 border border-transparent hover:border-white hover:bg-crimson-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg dark:hover:shadow-none hover:shadow-crimson-200 active:scale-[0.98] disabled:opacity-50;
   }
 
   .input-field {
-    @apply w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-[#222] bg-white/50 dark:bg-[#0a0a0a] outline-none focus:border-crimson-500 dark:focus:border-crimson-600 focus:ring-4 focus:ring-crimson-500/10 transition-all duration-300 text-sm text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600;
+    @apply w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-[#2a2a2a] bg-white/50 dark:bg-[#0a0a0a] outline-none focus:border-crimson-500 dark:focus:border-crimson-600 focus:ring-4 focus:ring-crimson-500/10 transition-all duration-300 text-sm text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600;
   }
 }
 
 body {
   font-family: var(--font-sans);
-  @apply bg-[#fafafa] dark:bg-[#000000] text-neutral-900 dark:text-neutral-50 transition-colors duration-300;
+  @apply bg-[#fafafa] dark:bg-[#0a0a0a] text-neutral-900 dark:text-neutral-50 transition-colors duration-300;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, .font-header {
   font-family: var(--font-header);
+}
+
+/* Hide default number input arrows for cleaner aesthetic */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }

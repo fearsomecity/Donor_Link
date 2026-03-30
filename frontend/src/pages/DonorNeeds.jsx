@@ -41,7 +41,7 @@ export default function DonorNeeds() {
 
   if (loading) {
     return (
-      <div className="flex-1 min-h-screen bg-neutral-50/50 dark:bg-[#000000] flex items-center justify-center">
+      <div className="flex-1 min-h-screen bg-neutral-50/50 dark:bg-[#0a0a0a] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-16 h-16 bg-crimson-50 rounded-2xl flex items-center justify-center animate-pulse-slow">
              <RefreshCw className="w-8 h-8 text-crimson-600 animate-spin" />
@@ -53,7 +53,7 @@ export default function DonorNeeds() {
   }
 
   return (
-    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#000000] pt-32 pb-20 px-6 overflow-hidden">
+    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#0a0a0a] pt-32 pb-20 px-6 overflow-hidden">
       {/* Aesthetic Background Elements */}
       <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-crimson-100/30 rounded-full blur-[100px] animate-float dark:hidden dark:hidden" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-crimson-50/30 rounded-full blur-[100px] animate-float dark:hidden dark:hidden" style={{ animationDelay: '2s' }} />
@@ -84,14 +84,14 @@ export default function DonorNeeds() {
 
            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {urgentRequests.length === 0 ? (
-                <div className="col-span-1 md:col-span-2 flex flex-col items-center justify-center text-center py-20 bg-neutral-50/50 dark:bg-[#000000] rounded-3xl border border-dashed border-neutral-200 dark:border-[#333]">
+                <div className="col-span-1 md:col-span-2 flex flex-col items-center justify-center text-center py-20 bg-neutral-50/50 dark:bg-[#0a0a0a] rounded-3xl border border-dashed border-neutral-200 dark:border-[#333]">
                    <AlertCircle className="w-16 h-16 text-neutral-200 mb-6" />
                    <p className="text-xl font-bold text-neutral-400 font-header">No Active Shortages</p>
                    <p className="text-sm text-neutral-400 font-medium mt-2">All local hospitals are currently stable. Great job!</p>
                 </div>
               ) : (
                 urgentRequests.map((req, i) => (
-                  <div key={i} className="group p-8 rounded-[2.5rem] bg-white dark:bg-[#111] border border-neutral-100 dark:border-[#222] hover:border-crimson-100 transition-all duration-500 shadow-sm dark:shadow-none hover:shadow-xl dark:shadow-none hover:shadow-crimson-100/10">
+                  <div key={i} className="group p-8 rounded-[2.5rem] bg-white dark:bg-[#141414] border border-neutral-100 dark:border-[#2a2a2a] hover:border-crimson-100 transition-all duration-500 shadow-sm dark:shadow-none hover:shadow-xl dark:shadow-none hover:shadow-crimson-100/10">
                      <div className="flex items-center justify-between mb-8">
                         <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest ${
                           req.urgencyLevel === 'critical' ? 'bg-red-50 text-red-600 ring-1 ring-red-100' : 
@@ -122,8 +122,8 @@ export default function DonorNeeds() {
                      </div>
                      
                      {req.message && (
-                       <div className="p-6 rounded-2xl bg-neutral-50/50 dark:bg-[#000000] border border-neutral-100 dark:border-[#222] text-sm font-medium text-neutral-500 italic mb-8 relative">
-                         <div className="absolute top-0 left-6 -translate-y-1/2 w-8 h-4 bg-neutral-50 dark:bg-[#000000] rounded-t-lg border-t border-x border-neutral-100 dark:border-[#222]" />
+                       <div className="p-6 rounded-2xl bg-neutral-50/50 dark:bg-[#0a0a0a] border border-neutral-100 dark:border-[#2a2a2a] text-sm font-medium text-neutral-500 italic mb-8 relative">
+                         <div className="absolute top-0 left-6 -translate-y-1/2 w-8 h-4 bg-neutral-50 dark:bg-[#0a0a0a] rounded-t-lg border-t border-x border-neutral-100 dark:border-[#2a2a2a]" />
                          "{req.message}"
                        </div>
                      )}

@@ -74,7 +74,7 @@ export default function HospitalRequests() {
 
   if (loading) {
     return (
-      <div className="flex-1 min-h-screen bg-neutral-50/50 dark:bg-[#000000] flex items-center justify-center">
+      <div className="flex-1 min-h-screen bg-neutral-50/50 dark:bg-[#0a0a0a] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-16 h-16 bg-crimson-50 rounded-2xl flex items-center justify-center animate-pulse-slow">
             <RefreshCw className="w-8 h-8 text-crimson-600 animate-spin" />
@@ -86,7 +86,7 @@ export default function HospitalRequests() {
   }
 
   return (
-    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#000000] pt-32 pb-20 px-6 overflow-hidden">
+    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#0a0a0a] pt-32 pb-20 px-6 overflow-hidden">
       {/* Aesthetic Background Elements */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-crimson-100/30 rounded-full blur-[100px] animate-float dark:hidden dark:hidden" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-50/30 rounded-full blur-[100px] animate-float dark:hidden" style={{ animationDelay: '2s' }} />
@@ -94,7 +94,7 @@ export default function HospitalRequests() {
       <div className="relative max-w-6xl mx-auto z-10">
         <header className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 animate-fade-in-up">
           <div>
-            <div className="inline-flex items-center gap-2 bg-neutral-900 dark:bg-[#111] text-white text-[10px] font-bold px-3 py-1 rounded-full mb-6 tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 bg-neutral-900 dark:bg-[#141414] text-white text-[10px] font-bold px-3 py-1 rounded-full mb-6 tracking-widest uppercase">
               <Activity className="w-3 h-3 text-crimson-500" />
               Live Demand Center
             </div>
@@ -112,7 +112,7 @@ export default function HospitalRequests() {
         </header>
 
         <div className="glass rounded-[3rem] overflow-hidden shadow-2xl dark:shadow-none shadow-neutral-200/50 dark:shadow-none animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-           <div className="p-10 border-b border-neutral-100 dark:border-[#222] flex items-center justify-between bg-white/50">
+           <div className="p-10 border-b border-neutral-100 dark:border-[#2a2a2a] flex items-center justify-between bg-white/50">
               <h2 className="text-2xl font-black text-neutral-900 dark:text-white font-header flex items-center gap-3">
                 <AlertCircle className="w-6 h-6 text-crimson-600" />
                 Active Broadcasts
@@ -128,7 +128,7 @@ export default function HospitalRequests() {
           <div className="p-8 space-y-6 min-h-[400px]">
             {myRequests.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-32 text-center">
-                <div className="w-24 h-24 bg-neutral-50 dark:bg-[#000000] rounded-[2.5rem] flex items-center justify-center mb-6 border border-neutral-100 dark:border-[#222]">
+                <div className="w-24 h-24 bg-neutral-50 dark:bg-[#0a0a0a] rounded-[2.5rem] flex items-center justify-center mb-6 border border-neutral-100 dark:border-[#2a2a2a]">
                   <Terminal className="w-10 h-10 text-neutral-300" />
                 </div>
                 <p className="text-xl font-bold text-neutral-400 font-header">No active requests found.</p>
@@ -139,7 +139,7 @@ export default function HospitalRequests() {
                 {myRequests.map((req, i) => (
                   <div 
                     key={req._id} 
-                    className="group p-8 rounded-[2.5rem] bg-white dark:bg-[#111] border border-neutral-100 dark:border-[#222] hover:border-crimson-200 transition-all duration-500 shadow-sm dark:shadow-none hover:shadow-xl dark:shadow-none hover:shadow-crimson-500/5 animate-fade-in-up"
+                    className="group p-8 rounded-[2.5rem] bg-white dark:bg-[#141414] border border-neutral-100 dark:border-[#2a2a2a] hover:border-crimson-200 transition-all duration-500 shadow-sm dark:shadow-none hover:shadow-xl dark:shadow-none hover:shadow-crimson-500/5 animate-fade-in-up"
                     style={{ animationDelay: `${0.1 + i * 0.05}s` }}
                   >
                     <div className="flex items-start justify-between mb-8">
@@ -173,7 +173,7 @@ export default function HospitalRequests() {
                           </span>
                        </div>
                        {req.message && (
-                         <div className="p-4 rounded-2xl bg-neutral-50/50 dark:bg-[#000000] text-sm text-neutral-500 font-medium italic border border-neutral-100 dark:border-[#222]/50">
+                         <div className="p-4 rounded-2xl bg-neutral-50/50 dark:bg-[#0a0a0a] text-sm text-neutral-500 font-medium italic border border-neutral-100 dark:border-[#2a2a2a]/50">
                            "{req.message}"
                          </div>
                        )}
@@ -184,7 +184,7 @@ export default function HospitalRequests() {
                           <CheckCircle className="w-4 h-4" />
                           Mark Resolved
                        </button>
-                       <button onClick={() => handleDeleteRequest(req._id)} className="w-14 h-14 rounded-2xl bg-neutral-50 dark:bg-[#000000] text-neutral-400 hover:bg-crimson-50 hover:text-crimson-600 transition-all flex items-center justify-center">
+                       <button onClick={() => handleDeleteRequest(req._id)} className="w-14 h-14 rounded-2xl bg-neutral-50 dark:bg-[#0a0a0a] text-neutral-400 hover:bg-crimson-50 hover:text-crimson-600 transition-all flex items-center justify-center">
                           <Trash2 className="w-5 h-5" />
                        </button>
                     </div>
@@ -199,8 +199,8 @@ export default function HospitalRequests() {
       {/* Modern Modal */}
       {showModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-neutral-900/60 backdrop-blur-md dark:backdrop-blur-none animate-fade-in">
-           <div className="relative bg-white dark:bg-[#111] rounded-[3.5rem] w-full max-w-xl shadow-[0_32px_128px_-16px_rgba(0,0,0,0.3)] border border-neutral-100 dark:border-[#222] overflow-hidden flex flex-col animate-fade-in-up">
-              <div className="p-10 bg-neutral-900 dark:bg-[#111] text-white flex items-center justify-between">
+           <div className="relative bg-white dark:bg-[#141414] rounded-[3.5rem] w-full max-w-xl shadow-[0_32px_128px_-16px_rgba(0,0,0,0.3)] border border-neutral-100 dark:border-[#2a2a2a] overflow-hidden flex flex-col animate-fade-in-up">
+              <div className="p-10 bg-neutral-900 dark:bg-[#141414] text-white flex items-center justify-between">
                  <div>
                     <div className="inline-flex items-center gap-2 text-crimson-500 text-[10px] font-black tracking-widest uppercase mb-2">
                        <Activity className="w-3 h-3" />
@@ -208,7 +208,7 @@ export default function HospitalRequests() {
                     </div>
                     <h3 className="text-4xl font-black font-header tracking-tight">Post Request</h3>
                  </div>
-                 <button onClick={() => setShowModal(false)} className="w-14 h-14 bg-white/10 hover:bg-white/20 rounded-2xl flex items-center justify-center transition-colors cursor-pointer active:scale-90">
+                 <button onClick={() => setShowModal(false)} className="w-14 h-14 bg-white/10 hover:border-neutral-900 dark:hover:border-white/20 rounded-2xl flex items-center justify-center transition-colors cursor-pointer active:scale-90">
                     <X className="w-8 h-8" />
                  </button>
               </div>
@@ -221,7 +221,7 @@ export default function HospitalRequests() {
                           <select 
                              value={newRequest.bloodType} 
                              onChange={(e) => setNewRequest({...newRequest, bloodType: e.target.value})} 
-                             className="w-full h-16 px-6 rounded-2xl bg-neutral-50 dark:bg-[#000000] border border-neutral-100 dark:border-[#222] outline-none text-lg font-black font-header appearance-none focus:bg-white dark:bg-[#111] focus:border-crimson-500 transition-all"
+                             className="w-full h-16 px-6 rounded-2xl bg-neutral-50 dark:bg-[#0a0a0a] border border-neutral-100 dark:border-[#2a2a2a] outline-none text-lg font-black font-header appearance-none focus:bg-white dark:bg-[#141414] focus:border-crimson-500 transition-all"
                           >
                             {bloodTypes.map(t => <option key={t} value={t}>{t}</option>)}
                           </select>
@@ -236,7 +236,7 @@ export default function HospitalRequests() {
                          type="number" 
                          value={newRequest.unitsNeeded} 
                          onChange={(e) => setNewRequest({...newRequest, unitsNeeded: parseInt(e.target.value) || 0})} 
-                         className="w-full h-16 px-6 rounded-2xl bg-neutral-50 dark:bg-[#000000] border border-neutral-100 dark:border-[#222] outline-none text-xl font-black font-header focus:bg-white dark:bg-[#111] focus:border-crimson-500 transition-all" 
+                         className="w-full h-16 px-6 rounded-2xl bg-neutral-50 dark:bg-[#0a0a0a] border border-neutral-100 dark:border-[#2a2a2a] outline-none text-xl font-black font-header focus:bg-white dark:bg-[#141414] focus:border-crimson-500 transition-all" 
                        />
                     </div>
                  </div>
@@ -252,7 +252,7 @@ export default function HospitalRequests() {
                            className={`h-14 rounded-2xl text-[10px] font-black uppercase tracking-widest border transition-all ${
                              newRequest.urgencyLevel === level 
                                ? 'bg-crimson-600 text-white border-crimson-700 shadow-xl dark:shadow-none shadow-crimson-100 scale-[1.02]' 
-                               : 'bg-white dark:bg-[#111] text-neutral-400 border-neutral-100 dark:border-[#222] hover:bg-neutral-50 dark:bg-[#000000]'
+                               : 'bg-white dark:bg-[#141414] text-neutral-400 border-neutral-100 dark:border-[#2a2a2a] hover:bg-neutral-50 dark:bg-[#0a0a0a]'
                            }`}
                          >
                             {level}
@@ -267,7 +267,7 @@ export default function HospitalRequests() {
                       placeholder="Special instructions or patient requirements..."
                       value={newRequest.message} 
                       onChange={(e) => setNewRequest({...newRequest, message: e.target.value})} 
-                      className="w-full h-32 p-6 rounded-[2rem] bg-neutral-50 dark:bg-[#000000] border border-neutral-100 dark:border-[#222] outline-none text-base font-medium resize-none focus:bg-white dark:bg-[#111] focus:border-crimson-500 transition-all shadow-inner" 
+                      className="w-full h-32 p-6 rounded-[2rem] bg-neutral-50 dark:bg-[#0a0a0a] border border-neutral-100 dark:border-[#2a2a2a] outline-none text-base font-medium resize-none focus:bg-white dark:bg-[#141414] focus:border-crimson-500 transition-all shadow-inner" 
                     />
                  </div>
 

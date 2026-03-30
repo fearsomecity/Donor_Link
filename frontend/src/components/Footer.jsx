@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { Heart, Github, Twitter, Linkedin, Mail } from 'lucide-react';
+import { Heart, Github, Linkedin, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-[#000000] border-t border-neutral-100 dark:border-transparent pt-20 pb-10 px-8 relative overflow-hidden transition-colors duration-300">
+    <footer className="bg-white dark:bg-[#0a0a0a] border-t border-neutral-100 dark:border-transparent pt-20 pb-10 px-8 relative overflow-hidden transition-colors duration-300">
       {/* Decorative Blobs */}
       <div className="absolute bottom-[-10%] left-[-5%] w-[30%] h-[50%] bg-crimson-50/50 rounded-full blur-[80px] dark:hidden dark:hidden" />
       
@@ -48,15 +48,14 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-bold text-neutral-900 dark:text-white uppercase tracking-widest mb-6 font-header">Connect</h4>
             <div className="flex gap-4">
-              <SocialIcon icon={<Twitter />} />
-              <SocialIcon icon={<Linkedin />} />
-              <SocialIcon icon={<Github />} />
-              <SocialIcon icon={<Mail />} />
+              <SocialIcon href="https://www.linkedin.com/in/aditya-sharma097" icon={<Linkedin />} />
+              <SocialIcon href="https://github.com/fearsomecity" icon={<Github />} />
+              <SocialIcon href="mailto:sharma.adi1217@gmail.com" icon={<Mail />} />
             </div>
           </div>
         </div>
 
-        <div className="pt-10 border-t border-neutral-100 dark:border-[#111] flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="pt-10 border-t border-neutral-100 dark:border-[#141414] flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-xs font-bold text-neutral-400 uppercase tracking-widest">
             &copy; 2026 DonorNet. Project of fearsomecity.
           </p>
@@ -70,9 +69,9 @@ export default function Footer() {
   );
 }
 
-function SocialIcon({ icon }) {
+function SocialIcon({ icon, href }) {
   return (
-    <a href="#" className="w-10 h-10 rounded-xl bg-neutral-50 dark:bg-[#111] flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:bg-crimson-600 dark:hover:bg-crimson-600 hover:text-white dark:hover:text-white hover:scale-110 transition-all duration-300 shadow-sm dark:shadow-none">
+    <a href={href || "#"} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-neutral-50 dark:bg-[#141414] flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:bg-crimson-600 dark:hover:bg-crimson-600 hover:text-white dark:hover:text-white hover:scale-110 transition-all duration-300 shadow-sm dark:shadow-none">
       <span className="w-5 h-5">{icon}</span>
     </a>
   );

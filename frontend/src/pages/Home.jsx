@@ -5,13 +5,13 @@ export default function Home() {
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
       {/* ── Hero Section ───────────────────────────────────────────── */}
-      <section className="relative pt-40 pb-32 px-8 flex-1 flex flex-col items-center justify-center overflow-hidden bg-neutral-50/30 dark:bg-[#000000] transition-colors duration-300">
+      <section className="relative pt-40 pb-32 px-8 flex-1 flex flex-col items-center justify-center overflow-hidden bg-neutral-50/30 dark:bg-[#0a0a0a] transition-colors duration-300">
         {/* Aesthetic Background Elements */}
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-crimson-100/30 rounded-full blur-[120px] animate-float dark:hidden dark:hidden" />
         <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-crimson-50/30 rounded-full blur-[120px] animate-float dark:hidden dark:hidden" style={{ animationDelay: '3s' }} />
 
         <div className="relative max-w-4xl mx-auto text-center z-10 animate-fade-in-up">
-          <div className="inline-flex items-center gap-3 bg-white/80 dark:bg-[#111] backdrop-blur-md dark:backdrop-blur-none border border-crimson-100 dark:border-[#222] text-crimson-700 dark:text-crimson-500 text-[10px] font-bold px-4 py-1.5 rounded-full mb-10 tracking-widest uppercase shadow-sm dark:shadow-none">
+          <div className="inline-flex items-center gap-3 bg-white/80 dark:bg-[#141414] backdrop-blur-md dark:backdrop-blur-none border border-crimson-100 dark:border-[#2a2a2a] text-crimson-700 dark:text-crimson-500 text-[10px] font-bold px-4 py-1.5 rounded-full mb-10 tracking-widest uppercase shadow-sm dark:shadow-none">
             <span className="w-2 h-2 rounded-full bg-crimson-500 animate-pulse" />
             The Future of Blood Donation
           </div>
@@ -28,20 +28,20 @@ export default function Home() {
             <Link to="/register/donor" className="btn-primary w-full sm:w-auto px-10 py-4 text-lg">
               Donate Blood
             </Link>
-            <Link to="/register/hospital" className="w-full sm:w-auto px-10 py-4 text-lg bg-white dark:bg-[#0a0a0a] border-2 border-neutral-100 dark:border-[#222] text-neutral-800 dark:text-neutral-100 font-bold rounded-xl hover:bg-neutral-50 dark:hover:bg-[#111] transition-all shadow-sm dark:shadow-none">
+            <Link to="/register/hospital" className="w-full sm:w-auto px-10 py-4 text-lg bg-white dark:bg-[#0a0a0a] border-2 border-neutral-100 dark:border-[#2a2a2a] text-neutral-800 dark:text-neutral-100 font-bold rounded-xl hover:bg-neutral-50 dark:hover:border-white transition-all shadow-sm dark:shadow-none">
               Request Blood
             </Link>
           </div>
           
           {/* Quick Action Buttons */}
           <div className="mt-20 flex flex-wrap justify-center gap-6">
-            <Link to="/donor/urgent-needs" className="flex items-center gap-3 px-6 py-4 glass dark:!bg-[#111] dark:!border-[#222] rounded-2xl hover:border-crimson-500 dark:hover:border-crimson-500 text-neutral-900 dark:text-neutral-100 font-bold transition-all hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-crimson-900/20 shadow-sm dark:shadow-none">
+            <Link to="/donor/urgent-needs" className="flex items-center gap-3 px-6 py-4 glass dark:!bg-[#141414] dark:!border-[#2a2a2a] rounded-2xl hover:border-crimson-500 dark:hover:border-crimson-500 text-neutral-900 dark:text-neutral-100 font-bold transition-all hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-crimson-900/20 shadow-sm dark:shadow-none">
               <Activity className="w-5 h-5 text-crimson-600 dark:text-crimson-500" /> Live Tracking
             </Link>
-            <Link to="/donor/eligibility" className="flex items-center gap-3 px-6 py-4 glass dark:!bg-[#111] dark:!border-[#222] rounded-2xl hover:border-crimson-500 dark:hover:border-crimson-500 text-neutral-900 dark:text-neutral-100 font-bold transition-all hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-crimson-900/20 shadow-sm dark:shadow-none">
+            <Link to="/donor/eligibility" className="flex items-center gap-3 px-6 py-4 glass dark:!bg-[#141414] dark:!border-[#2a2a2a] rounded-2xl hover:border-crimson-500 dark:hover:border-crimson-500 text-neutral-900 dark:text-neutral-100 font-bold transition-all hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-crimson-900/20 shadow-sm dark:shadow-none">
               <MapPin className="w-5 h-5 text-crimson-600 dark:text-crimson-500" /> Smart Matching
             </Link>
-            <Link to="/donor/book-appointment" className="flex items-center gap-3 px-6 py-4 glass dark:!bg-[#111] dark:!border-[#222] rounded-2xl hover:border-crimson-500 dark:hover:border-crimson-500 text-neutral-900 dark:text-neutral-100 font-bold transition-all hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-crimson-900/20 shadow-sm dark:shadow-none">
+            <Link to="/donor/book-appointment" className="flex items-center gap-3 px-6 py-4 glass dark:!bg-[#141414] dark:!border-[#2a2a2a] rounded-2xl hover:border-crimson-500 dark:hover:border-crimson-500 text-neutral-900 dark:text-neutral-100 font-bold transition-all hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-crimson-900/20 shadow-sm dark:shadow-none">
               <Calendar className="w-5 h-5 text-crimson-600 dark:text-crimson-500" /> Instant Booking
             </Link>
           </div>

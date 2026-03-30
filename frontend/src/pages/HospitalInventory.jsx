@@ -54,7 +54,7 @@ export default function HospitalInventory() {
 
   if (loading) {
     return (
-      <div className="flex-1 min-h-screen bg-neutral-50/50 dark:bg-[#000000] flex items-center justify-center">
+      <div className="flex-1 min-h-screen bg-neutral-50/50 dark:bg-[#0a0a0a] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-16 h-16 bg-crimson-50 rounded-2xl flex items-center justify-center animate-pulse-slow">
              <RefreshCw className="w-8 h-8 text-crimson-600 animate-spin" />
@@ -71,7 +71,7 @@ export default function HospitalInventory() {
   }));
 
   return (
-    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#000000] pt-32 pb-20 px-6 overflow-hidden">
+    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#0a0a0a] pt-32 pb-20 px-6 overflow-hidden">
       {/* Aesthetic Background Elements */}
       <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-crimson-100/30 rounded-full blur-[100px] animate-float dark:hidden dark:hidden" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-50/50 rounded-full blur-[100px] animate-float dark:hidden" style={{ animationDelay: '2s' }} />
@@ -79,14 +79,14 @@ export default function HospitalInventory() {
       <div className="relative max-w-7xl mx-auto z-10">
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 animate-fade-in-up">
           <div>
-            <div className="inline-flex items-center gap-2 bg-neutral-900 dark:bg-[#111] text-white text-[10px] font-bold px-3 py-1 rounded-full mb-6 tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 bg-neutral-900 dark:bg-[#141414] text-white text-[10px] font-bold px-3 py-1 rounded-full mb-6 tracking-widest uppercase">
               <Database className="w-3 h-3 text-crimson-500" />
               Stock Management
             </div>
             <h1 className="text-5xl md:text-7xl font-black text-neutral-900 dark:text-white tracking-tightest mb-4 font-header">Manage Inventory</h1>
             <p className="text-xl text-neutral-500 max-w-2xl font-medium">Real-time tracking of blood supplies and automated threshold alerts.</p>
           </div>
-          <button onClick={fetchInventory} className="w-14 h-14 rounded-2xl bg-white dark:bg-[#111] border border-neutral-200 dark:border-[#333] text-neutral-600 hover:text-crimson-600 transition-all shadow-sm dark:shadow-none flex items-center justify-center group active:scale-95">
+          <button onClick={fetchInventory} className="w-14 h-14 rounded-2xl bg-white dark:bg-[#141414] border border-neutral-200 dark:border-[#333] text-neutral-600 hover:text-crimson-600 transition-all shadow-sm dark:shadow-none flex items-center justify-center group active:scale-95">
             <RefreshCw className="w-6 h-6 group-hover:rotate-180 transition-transform duration-500" />
           </button>
         </header>
@@ -151,12 +151,12 @@ export default function HospitalInventory() {
             
             <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
               {bloodTypes.map(type => (
-                <div key={type} className="flex items-center justify-between p-4 rounded-2xl bg-neutral-50/50 dark:bg-[#000000] border border-neutral-100 dark:border-[#222]/50 group hover:bg-white dark:bg-[#111] hover:border-crimson-100 transition-all duration-300">
+                <div key={type} className="flex items-center justify-between p-4 rounded-2xl bg-neutral-50/50 dark:bg-[#0a0a0a] border border-neutral-100 dark:border-[#2a2a2a]/50 group hover:border-neutral-900 dark:hover:border-white dark:bg-[#141414] hover:border-crimson-100 transition-all duration-300">
                   <div className="flex items-center gap-4">
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-black text-sm shadow-sm dark:shadow-none transition-all duration-300 ${
                       (editInventory?.[type] || 0) < 10 
                         ? 'bg-crimson-100 text-crimson-600 ring-4 ring-crimson-50' 
-                        : 'bg-white dark:bg-[#111] text-neutral-400 border border-neutral-100 dark:border-[#222] group-hover:bg-blue-50 group-hover:text-blue-600'
+                        : 'bg-white dark:bg-[#141414] text-neutral-400 border border-neutral-100 dark:border-[#2a2a2a] group-hover:bg-blue-50 group-hover:text-blue-600'
                     }`}>
                       {type}
                     </div>
@@ -172,14 +172,14 @@ export default function HospitalInventory() {
                       type="number" 
                       value={editInventory?.[type] || 0} 
                       onChange={(e) => setEditInventory({...editInventory, [type]: parseInt(e.target.value) || 0})} 
-                      className="w-16 h-12 bg-white dark:bg-[#111] rounded-xl border border-neutral-100 dark:border-[#222] text-center text-sm font-black outline-none focus:border-crimson-500 focus:ring-4 focus:ring-crimson-500/10 transition-all" 
+                      className="w-16 h-12 bg-white dark:bg-[#141414] rounded-xl border border-neutral-100 dark:border-[#2a2a2a] text-center text-sm font-black outline-none focus:border-crimson-500 focus:ring-4 focus:ring-crimson-500/10 transition-all" 
                     />
                   </div>
                 </div>
               ))}
             </div>
             
-            <div className="mt-10 pt-8 border-t border-neutral-100 dark:border-[#222]">
+            <div className="mt-10 pt-8 border-t border-neutral-100 dark:border-[#2a2a2a]">
                <div className="flex items-center gap-3 text-crimson-600 mb-2">
                   <AlertTriangle className="w-5 h-5" />
                   <span className="text-sm font-bold font-header">Inventory Alert</span>

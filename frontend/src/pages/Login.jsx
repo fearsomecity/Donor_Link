@@ -39,7 +39,7 @@ export default function Login() {
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-64px)] flex items-center justify-center p-6 overflow-hidden bg-neutral-50/50 dark:bg-[#000000]">
+    <div className="relative min-h-[calc(100vh-64px)] flex items-center justify-center p-6 overflow-hidden bg-neutral-50/50 dark:bg-[#0a0a0a]">
       {/* Aesthetic Background Elements */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-crimson-100/50 rounded-full blur-[100px] animate-float dark:hidden dark:hidden" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-crimson-50/50 rounded-full blur-[100px] animate-float dark:hidden dark:hidden" style={{ animationDelay: '2s' }} />
@@ -118,16 +118,16 @@ export default function Login() {
           </button>
         </form>
 
-        <div className="mt-10 pt-8 border-t border-neutral-100 dark:border-[#222] text-center">
+        <div className="mt-10 pt-8 border-t border-neutral-100 dark:border-[#2a2a2a] text-center">
           <p className="text-sm text-neutral-500 font-medium">
             Don't have an account?
           </p>
           <div className="mt-4 flex flex-wrap justify-center gap-4">
-            <Link to="/register/donor" className="px-5 py-2.5 rounded-xl border border-neutral-200 dark:border-[#333] text-sm font-bold text-neutral-700 hover:bg-neutral-50 dark:bg-[#000000] hover:border-neutral-300 transition-all flex items-center gap-2">
+            <Link to="/register/donor" className="px-5 py-2.5 rounded-xl border border-neutral-200 dark:border-[#333] text-sm font-bold text-neutral-700 hover:bg-neutral-50 dark:bg-[#0a0a0a] hover:border-neutral-300 transition-all flex items-center gap-2">
               Join as Donor
               <ArrowRight className="w-3 h-3" />
             </Link>
-            <Link to="/register/hospital" className="px-5 py-2.5 rounded-xl border border-neutral-200 dark:border-[#333] text-sm font-bold text-neutral-700 hover:bg-neutral-50 dark:bg-[#000000] hover:border-neutral-300 transition-all flex items-center gap-2">
+            <Link to="/register/hospital" className="px-5 py-2.5 rounded-xl border border-neutral-200 dark:border-[#333] text-sm font-bold text-neutral-700 hover:bg-neutral-50 dark:bg-[#0a0a0a] hover:border-neutral-300 transition-all flex items-center gap-2">
               Join as Hospital
               <ArrowRight className="w-3 h-3" />
             </Link>

@@ -59,7 +59,7 @@ export default function BookAppointment() {
   const timeSlots = ["09:00 AM", "10:00 AM", "11:00 AM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM"];
 
   return (
-    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#000000] pt-32 pb-20 px-6 overflow-hidden">
+    <div className="relative min-h-screen bg-neutral-50/50 dark:bg-[#0a0a0a] pt-32 pb-20 px-6 overflow-hidden">
       {/* Background Blobs */}
       <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-crimson-100/30 rounded-full blur-[100px] animate-float dark:hidden dark:hidden" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[30%] bg-blue-50/50 rounded-full blur-[100px] animate-float dark:hidden" style={{ animationDelay: '3s' }} />
@@ -90,7 +90,7 @@ export default function BookAppointment() {
                     <button 
                       key={h.id}
                       onClick={() => setSelectedHospital(h)}
-                      className={`w-full flex items-center gap-4 p-6 rounded-3xl border-2 transition-all duration-300 text-left ${selectedHospital?.id === h.id ? 'border-crimson-600 bg-crimson-50/30' : 'border-neutral-50 bg-white dark:bg-[#111] hover:border-neutral-200 dark:border-[#333]'}`}
+                      className={`w-full flex items-center gap-4 p-6 rounded-3xl border-2 transition-all duration-300 text-left ${selectedHospital?.id === h.id ? 'border-crimson-600 bg-crimson-50/30' : 'border-neutral-50 bg-white dark:bg-[#141414] hover:border-neutral-200 dark:border-[#333]'}`}
                     >
                       <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${selectedHospital?.id === h.id ? 'bg-crimson-600 text-white' : 'bg-neutral-100 text-neutral-400'}`}>
                         <Hospital className="w-6 h-6" />
@@ -137,7 +137,7 @@ export default function BookAppointment() {
                         <button 
                           key={t}
                           onClick={() => setTime(t)}
-                          className={`p-4 rounded-2xl text-sm font-bold transition-all border-2 ${time === t ? 'bg-neutral-900 dark:bg-[#111] text-white border-neutral-900' : 'bg-white dark:bg-[#111] text-neutral-600 border-neutral-100 dark:border-[#222] hover:border-neutral-300'}`}
+                          className={`p-4 rounded-2xl text-sm font-bold transition-all border-2 ${time === t ? 'bg-neutral-900 dark:bg-[#141414] text-white border-neutral-900' : 'bg-white dark:bg-[#141414] text-neutral-600 border-neutral-100 dark:border-[#2a2a2a] hover:border-neutral-300'}`}
                         >
                           {t}
                         </button>
@@ -168,7 +168,7 @@ export default function BookAppointment() {
                   <p className="text-neutral-500">Please review your appointment summary.</p>
                 </div>
                 
-                <div className="bg-neutral-50 dark:bg-[#000000] rounded-[2rem] p-8 text-left space-y-4">
+                <div className="bg-neutral-50 dark:bg-[#0a0a0a] rounded-[2rem] p-8 text-left space-y-4">
                   <div className="flex justify-between">
                     <span className="text-xs font-bold text-neutral-400 uppercase">Hospital</span>
                     <span className="font-bold text-neutral-900 dark:text-white">{selectedHospital.name}</span>

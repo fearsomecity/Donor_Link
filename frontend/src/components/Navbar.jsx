@@ -129,7 +129,7 @@ export default function Navbar() {
               {/* Theme Toggle */}
               <button 
                 onClick={toggleTheme}
-                className="p-3 mr-2 rounded-xl bg-neutral-100/50 text-neutral-500 hover:text-crimson-600 hover:bg-crimson-50 transition-all dark:bg-[#111] dark:text-neutral-400 dark:hover:text-crimson-400 dark:hover:bg-[#222]"
+                className="p-3 mr-2 rounded-xl bg-neutral-100/50 text-neutral-500 hover:text-crimson-600 hover:bg-crimson-50 transition-all dark:bg-[#141414] dark:text-neutral-400 dark:hover:text-crimson-400 dark:hover:border-white"
               >
                 {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
@@ -138,7 +138,7 @@ export default function Navbar() {
               <div className="relative">
                 <button 
                   onClick={() => setShowNotifications(!showNotifications)}
-                  className="p-3 rounded-xl bg-neutral-100/50 text-neutral-500 hover:text-crimson-600 hover:bg-crimson-50 transition-all dark:bg-[#111] dark:hover:bg-[#222] relative"
+                  className="p-3 rounded-xl bg-neutral-100/50 text-neutral-500 hover:text-crimson-600 hover:bg-crimson-50 transition-all dark:bg-[#141414] dark:hover:border-white relative"
                 >
                   <Bell className="w-5 h-5" />
                   {unreadCount > 0 && (
@@ -164,7 +164,7 @@ export default function Navbar() {
                               if (n.link) navigate(n.link);
                               setShowNotifications(false);
                             }}
-                            className={`p-4 rounded-2xl transition-all cursor-pointer ${n.read ? 'bg-neutral-50 dark:bg-[#111]' : 'bg-white dark:bg-[#0a0a0a] border border-crimson-100 dark:border-[#222] shadow-sm dark:shadow-none'}`}
+                            className={`p-4 rounded-2xl transition-all cursor-pointer ${n.read ? 'bg-neutral-50 dark:bg-[#141414]' : 'bg-white dark:bg-[#0a0a0a] border border-crimson-100 dark:border-[#2a2a2a] shadow-sm dark:shadow-none'}`}
                           >
                             <p className="text-xs font-bold text-neutral-900 dark:text-white mb-1">{n.title}</p>
                             <p className="text-[10px] font-medium text-neutral-500 dark:text-neutral-400 leading-tight">{n.message}</p>
@@ -198,12 +198,12 @@ export default function Navbar() {
         <div className="md:hidden flex items-center gap-2">
           <button 
             onClick={toggleTheme}
-            className="p-2 rounded-xl text-neutral-500 hover:bg-neutral-100 transition-colors dark:text-neutral-400 dark:hover:bg-[#111]"
+            className="p-2 rounded-xl text-neutral-500 hover:bg-neutral-100 transition-colors dark:text-neutral-400 dark:hover:border-white"
           >
             {isDarkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
           </button>
           <button
-            className="p-2 rounded-xl hover:bg-neutral-100 transition-colors dark:hover:bg-[#111] dark:text-white"
+            className="p-2 rounded-xl hover:bg-neutral-100 transition-colors dark:hover:border-white dark:text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -216,7 +216,7 @@ export default function Navbar() {
         <div className="md:hidden absolute top-full left-6 right-6 mt-2 glass p-6 rounded-3xl space-y-4 animate-fade-in-up">
           {isAuthenticated ? (
             <>
-              <div className="pb-4 border-b border-neutral-100 dark:border-[#222] mb-4">
+              <div className="pb-4 border-b border-neutral-100 dark:border-[#2a2a2a] mb-4">
                 <p className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-1">Signed in as</p>
                 <p className="text-lg font-bold text-neutral-900 dark:text-white">{user?.profile?.name || user?.profile?.hospitalName}</p>
               </div>
