@@ -15,6 +15,9 @@ app.use('/api/donors', require('./routes/donor'));
 app.use('/api/donors/appointments', require('./routes/appointments'));
 
 // Health check
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok', service: 'donor-service' });
+});
 app.get('/', (req, res) => {
   res.send('🩺 Donor Service is running...');
 });
